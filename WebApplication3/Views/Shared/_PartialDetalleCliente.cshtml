@@ -1,0 +1,168 @@
+﻿@model WebApplication3.Models.CLIENTES
+
+
+<div>
+@Html.Hidden("hddClienteID", @Html.DisplayFor(model => model.ClienteID))
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">@Html.DisplayNameFor(model => model.Nombre)</div>
+            <div class="col-sm-2">@Html.DisplayNameFor(model => model.RazonSocial) </div>
+            <div class="col-sm-2">Direccion Entrega </div>
+            <div class="col-sm-2">Direccion Real </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><input value="@Html.DisplayFor(model => model.Nombre)" disabled="disabled" /></div>
+            <div class="col-sm-2"><input value="@Html.DisplayFor(model => model.RazonSocial)" disabled="disabled" /></div>
+            <div class="col-sm-2"><input value="@Html.DisplayFor(model => model.Direccion1)" disabled="disabled" /></div>
+            <div class="col-sm-2"><input value="@Html.DisplayFor(model => model.Direccion2)" disabled="disabled" /></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Telefono </div>
+            <div class="col-sm-2">Provincia</div>
+            <div class="col-sm-2">Usuario Mercadolibre</div>
+            <div class="col-sm-2">Cuit / Cuil</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><input value="@Html.DisplayFor(model => model.Telefono1)" disabled="disabled" /></div>
+            <div class="col-sm-2"><input value="@Html.DisplayFor(model => model.PROVINCIAS.Nombre)" disabled="disabled" /></div>
+            <div class="col-sm-2"><input value="@Html.DisplayFor(model => model.UsuarioMercadolibre)" disabled="disabled" /></div>
+            <div class="col-sm-2"><input value="@Html.DisplayFor(model => model.CUIT_CUIL)" disabled="disabled" /></div>
+        </div>
+        
+    </div>
+            
+          
+                @*@Html.DisplayNameFor(model => model.RazonSocial)
+           
+
+           
+                @Html.DisplayFor(model => model.RazonSocial)
+           
+
+            
+                @Html.DisplayNameFor(model => model.CUIT_CUIL)
+            
+
+           
+                @Html.DisplayFor(model => model.CUIT_CUIL)
+          
+
+           
+                @Html.DisplayNameFor(model => model.Direccion1)
+            
+
+            
+                @Html.DisplayFor(model => model.Direccion1)
+            
+            
+                @Html.DisplayNameFor(model => model.Direccion2)
+           
+
+            
+                @Html.DisplayFor(model => model.Direccion2)
+           
+
+           
+                @Html.DisplayNameFor(model => model.Localidad)
+            
+
+            
+                @Html.DisplayFor(model => model.Localidad)
+           
+           
+                @Html.DisplayNameFor(model => model.CodPostal)
+           
+
+           
+                @Html.DisplayFor(model => model.CodPostal)
+            
+
+           
+                @Html.DisplayNameFor(model => model.Latitud)
+          
+
+           
+                @Html.DisplayFor(model => model.Latitud)
+            
+
+            
+                @Html.DisplayNameFor(model => model.Longitud)
+            
+
+            
+                @Html.DisplayFor(model => model.Longitud)
+            
+          
+                @Html.DisplayNameFor(model => model.Zoom)
+            
+
+           
+                @Html.DisplayFor(model => model.Zoom)
+            
+
+           
+                @Html.DisplayNameFor(model => model.Telefono1)
+            
+
+           
+                @Html.DisplayFor(model => model.Telefono1)
+            
+
+           
+                @Html.DisplayNameFor(model => model.Telefono2)
+           
+
+            
+                @Html.DisplayFor(model => model.Telefono2)
+            
+
+          
+                @Html.DisplayNameFor(model => model.Mail1)
+            
+
+            
+                @Html.DisplayFor(model => model.Mail1)
+           
+
+            
+                @Html.DisplayNameFor(model => model.Mail2)
+            
+
+          
+                @Html.DisplayFor(model => model.Mail2)
+            
+
+           
+                @Html.DisplayNameFor(model => model.Descuento)
+          
+
+           
+                @Html.DisplayFor(model => model.Descuento)
+         
+
+           
+                @Html.DisplayNameFor(model => model.Comentarios)
+           
+
+            
+                @Html.DisplayFor(model => model.Comentarios)
+           
+
+         
+                @Html.DisplayNameFor(model => model.UsuarioMercadolibre)
+           
+
+            
+                @Html.DisplayFor(model => model.UsuarioMercadolibre)
+           
+
+         
+                @Html.DisplayNameFor(model => model.PROVINCIAS.Nombre)
+           
+
+            
+                @Html.DisplayFor(model => model.PROVINCIAS.Nombre)*@
+           
+
+       
+</div>

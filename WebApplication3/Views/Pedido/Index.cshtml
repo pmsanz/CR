@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Crear Nuevo Pedido";
+}
+
+<h2>Index</h2>
+
+<div>
+<h2>CREAR NUEVO PEDIDO</h2>
+    @using (Html.BeginForm("Create", "Pedido" , FormMethod.Get))
+    {
+        @Html.AntiForgeryToken()
+
+        <label for="tipo">Nuevo tipo de Pedido:</label>
+        <select id="tipo" name="tipo">
+            <option value="1">Cliente</option>
+            <option value="2">Proveedor</option>
+        </select>
+
+        <input type="submit" value="Seleccionar" class="btn btn-default" />
+
+    }
+
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index","Home")
+</div>

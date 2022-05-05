@@ -1,0 +1,130 @@
+﻿@model WebApplication3.Models.PRODUCTOS
+
+<div>
+
+    <div class="container-fluid">
+        @Html.HiddenFor(model => model.ProductoID)
+
+        <div class="row">
+            <div class="col-sm-2">@Html.DisplayNameFor(model => model.CodProducto)</div>
+            <div class="col-sm-4">@Html.DisplayNameFor(model => model.Descripcion) </div>
+            <div class="col-sm-2">Unidades en Stock </div>
+            <div class="col-sm-2">Precio </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><input name="CodigoProducto" value="@Html.DisplayFor(model => model.CodProducto)" disabled="disabled" /></div>
+            <div class="col-sm-4"><input id="txtDescricpion"  value="@Html.DisplayFor(model => model.Descripcion)" disabled="disabled" /></div>
+            <div class="col-sm-2"><input value="@Html.DisplayFor(model => model.Stock)" disabled="disabled" /></div>
+            <div class="col-sm-2"><input id="txtPrecio" value="@Html.DisplayFor(model => model.PrecioVenta)" disabled="disabled" /></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">Categoria </div>
+            <div class="col-sm-4">Detalle</div>
+            <div class="col-sm-2">% IVA</div>
+            <div class="col-sm-2">Cantidad</div>
+            
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><input value="@ViewBag.Categoria" disabled="disabled" /></div>
+            <div class="col-sm-4"><input value="@Html.DisplayFor(model => model.Detalle)" disabled="disabled" /></div>
+            <div class="col-sm-2"><input value="@ViewBag.Iva" disabled="disabled" /></div>
+            <div class="col-sm-2"><input id="txtCantidad" type="number" max="@Html.DisplayFor(model => model.Stock)" min="0"  value="1"/></div>
+            
+        </div>
+
+    </div>
+
+    @*<h4>PRODUCTOS</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StockReposicion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StockReposicion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioCompra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioVenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioVenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagenProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagenProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CATEGORIAS.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATEGORIAS.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDORES.ListaPrecios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDORES.ListaPrecios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_IVA.TIvaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_IVA.TIvaID)
+        </dd>
+
+    </dl>*@
+</div>
+

@@ -1,0 +1,120 @@
+﻿@model WebApplication3.Models.ModelViewPaginaPrincipal
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@section Scripts{
+
+    <style>
+        .centrado {
+                text-align: center;
+
+        
+        }
+
+    </style>
+
+    <script>
+
+        function RealizarPedido(id) {
+
+            console.log(id);
+            //window.location.href = "@Url.Action("ReStockearProducto", "PedidoProveedor")?id=" + id;
+        
+        }
+
+    function Detalle(id) {
+
+
+        console.log(id);
+        window.location.href = "@Url.Action("Edit", "PedidoCliente")?id=" + id;
+
+    }
+
+    function Eliminar(id) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Eliminar")',
+            data: '{keyword: ' + JSON.stringify(id) + '}',
+            dataType: "html",
+            contentType: "application/json; charset=utf-8",
+            error: function () {
+                console.log("Error al retornar Eliminar");
+                // alert("Error while inserting data");
+            }
+        });
+        return false;
+
+    }
+
+
+    function Buscar(keyword) {
+
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("BuscarNombreCliente")',
+            data: '{keyword: ' + JSON.stringify($("#buscarCliente").val()) + '}',
+            dataType: "html",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                // alert("Data has been added successfully.");
+
+                //$("#StudentName").removeAttr("placeholder");
+                // $("#buscarCliente").val(data.data);
+                $('#ClienteDetalle').html(data);
+            },
+            error: function () {
+                console.log("Error al retornar");
+                // alert("Error while inserting data");
+            }
+        });
+        return false;
+
+
+    }
+
+
+
+</script>
+
+
+}
+
+
+@{
+    
+  
+    
+}
+
+
+    <h1> Pedidos </h1>
+    @using GridMvc.Html
+  
+        @Html.Grid(Model.dashPedidoCliente).Columns(columns =>
+                        {
+                            columns.Add(foo => foo.PedidoID).Titled("N° Pedido").SetWidth(110).Format("{0:000000}").Css("centrado");
+                            columns.Add(foo => foo.CLIENTES.Nombre).Titled("Cliente").Sortable(true).Css("centrado");
+                            columns.Add(foo => foo.AspNetUsers.UserName).Titled("Encargado").Sortable(true).Css("centrado");
+                            columns.Add(foo => foo.FechaCreacion).Titled("Fecha").Format("{0:dd/MM/yyyy}").Sortable(true).Css("centrado");
+                            columns.Add(foo => foo.Total).Format("{0:0.00}").Titled("Precio Unitario").Sortable(true).Css("centrado");
+                            columns.Add().Titled("").RenderValueAs(data => new HtmlString("<button onclick='Detalle(" + data.PedidoID + ")'>Detalle</button>")).Encoded(false).Sanitized(false).SetWidth(110).Css("centrado");
+                            columns.Add().Titled("").RenderValueAs(data => new HtmlString("<button onclick='Eliminar(" + data.PedidoID + ")'>Eliminar</button>")).Encoded(false).Sanitized(false).Css("centrado");
+                        }).WithPaging(20)
+
+
+    <br />
+<h1>Productos</h1>
+    @Html.Grid(Model.dashProductos).Columns(columns =>
+                        {
+                            columns.Add(foo => foo.CodProducto).Titled("Codigo").SetWidth(200).Format("{0:000000}").Css("centrado");
+                            columns.Add(foo => foo.Descripcion).Titled("Descripcion").Sortable(true).Css("centrado");
+                            columns.Add(foo => foo.Stock).Titled("StockActual").Sortable(true).Css("centrado");
+                            columns.Add(foo => foo.StockReposicion).Titled("StockReposicion").Sortable(true).Css("centrado");
+                            columns.Add().Titled("").RenderValueAs(data => new HtmlString("<button onclick='RealizarPedido(" + data.ProductoID + ")'> Pedir </button>")).Encoded(false).Sanitized(false).SetWidth(110).Css("centrado");
+                        }).WithPaging(20)
+
+   

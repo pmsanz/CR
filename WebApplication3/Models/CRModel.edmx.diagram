@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7c9ec172e27040d0ad121d8ad8300e67" Name="Diagram1" ZoomLevel="13">
+        <EntityTypeShape EntityType="CRModel.AspNetRoles" Width="1.5" PointX="6" PointY="2.125" />
+        <EntityTypeShape EntityType="CRModel.AspNetUserClaims" Width="1.5" PointX="10.5" PointY="1" />
+        <EntityTypeShape EntityType="CRModel.AspNetUserLogins" Width="1.5" PointX="10.5" PointY="4.375" />
+        <EntityTypeShape EntityType="CRModel.AspNetUsers" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="CRModel.CATEGORIAS" Width="1.5" PointX="3" PointY="14" />
+        <EntityTypeShape EntityType="CRModel.CLIENTES" Width="1.5" PointX="3" PointY="16.875" />
+        <EntityTypeShape EntityType="CRModel.CUENTAS_CLIENTES" Width="1.5" PointX="5.25" PointY="25.875" />
+        <EntityTypeShape EntityType="CRModel.CUENTAS_PROVEEDORES" Width="1.5" PointX="5.25" PointY="13.625" />
+        <EntityTypeShape EntityType="CRModel.ESTADOS_PEDIDOS" Width="1.5" PointX="8.25" PointY="6.25" />
+        <EntityTypeShape EntityType="CRModel.MOVIMIENTOS_CLIENTES" Width="1.5" PointX="7.5" PointY="25.75" />
+        <EntityTypeShape EntityType="CRModel.MOVIMIENTOS_PROVEEDORES" Width="1.5" PointX="7.5" PointY="13.5" />
+        <EntityTypeShape EntityType="CRModel.PEDIDOS_CLIENTES" Width="1.5" PointX="10.5" PointY="14.375" />
+        <EntityTypeShape EntityType="CRModel.PEDIDOS_CLIENTES_DETALLES" Width="1.5" PointX="12.75" PointY="11.5" />
+        <EntityTypeShape EntityType="CRModel.PEDIDOS_PROVEEDORES" Width="1.5" PointX="10.5" PointY="7.75" />
+        <EntityTypeShape EntityType="CRModel.PEDIDOS_PROVEEDORES_DETALLES" Width="1.5" PointX="12.75" PointY="7.375" />
+        <EntityTypeShape EntityType="CRModel.PRODUCTOS" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="CRModel.PROVEEDORES" Width="1.5" PointX="3" PointY="6.125" />
+        <EntityTypeShape EntityType="CRModel.PROVINCIAS" Width="1.5" PointX="0.75" PointY="11.875" />
+        <EntityTypeShape EntityType="CRModel.sysdiagrams" Width="1.5" PointX="12.75" PointY="1.125" />
+        <EntityTypeShape EntityType="CRModel.TIPO_FACTURACIONES" Width="1.5" PointX="8.25" PointY="10.125" />
+        <EntityTypeShape EntityType="CRModel.TIPO_IVA" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="CRModel.TIPO_PAGOS" Width="1.5" PointX="12.75" PointY="15" />
+        <AssociationConnector Association="CRModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CRModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CRModel.FK_PEDIDOS_CLIENTES_AspNetUsers" />
+        <AssociationConnector Association="CRModel.PEDIDOS_PROVEEDORES_AspNetUsers" />
+        <AssociationConnector Association="CRModel.FK_PRODUCTOS_CATEGORIAS" />
+        <AssociationConnector Association="CRModel.FK_CLIENTES_PROVINCIAS" />
+        <AssociationConnector Association="CRModel.FK_CUENTAS_CLIENTES_CLIENTES" />
+        <AssociationConnector Association="CRModel.FK_PEDIDOS_CLIENTES_CLIENTES" />
+        <AssociationConnector Association="CRModel.FK_MOVIMIENTOS_CLIENTES_CUENTAS_CLIENTES" />
+        <AssociationConnector Association="CRModel.FK_CUENTAS_PROVEEDORES_PROVEEDORES" />
+        <AssociationConnector Association="CRModel.FK_MOVIMIENTOS_PROVEEDORES_CUENTAS_PROVEEDORES" />
+        <AssociationConnector Association="CRModel.FK_PEDIDOS_CLIENTES_ESTADOS_PEDIDOS" />
+        <AssociationConnector Association="CRModel.FK_PEDIDOS_PROVEEDORES_ESTADOS_PEDIDOS" />
+        <AssociationConnector Association="CRModel.FK__PEDIDOS_C__TFact__2CF2ADDF" />
+        <AssociationConnector Association="CRModel.FK_PEDIDOS_CLIENTES_DETALLES_PEDIDOS_CLIENTES" />
+        <AssociationConnector Association="CRModel.FK__PEDIDOS_C__Produ__160F4887" />
+        <AssociationConnector Association="CRModel.FK__PEDIDOS_P__TFact__32AB8735" />
+        <AssociationConnector Association="CRModel.FK_PEDIDOS_PROVEEDORES_DETALLES_PEDIDOS_PROVEEDORES" />
+        <AssociationConnector Association="CRModel.FK_PEDIDOS_PROVEEDORES_PROVEEDORES" />
+        <AssociationConnector Association="CRModel.FK__PEDIDOS_P__Produ__17036CC0" />
+        <AssociationConnector Association="CRModel.FK_PRODUCTOS_PROVEEDORES" />
+        <AssociationConnector Association="CRModel.FK_PRODUCTOS_TIPO_IVA" />
+        <AssociationConnector Association="CRModel.FK_PROVEEDORES_PROVINCIAS" />
+        <AssociationConnector Association="CRModel.AspNetUserRoles" />
+        <AssociationConnector Association="CRModel.CLIENTESTIPO_FACTURACION" />
+        <AssociationConnector Association="CRModel.CLIENTESTIPO_PAGOS" />
+        <AssociationConnector Association="CRModel.PROVEEDORESTIPO_FACTURACION" />
+        <AssociationConnector Association="CRModel.PROVEEDORESTIPO_PAGOS" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

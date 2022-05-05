@@ -1,0 +1,241 @@
+﻿@model WebApplication3.Models.PRODUCTOS
+
+@{
+    ViewBag.Title = "Create";
+
+}
+
+@section Scripts
+{
+
+
+<script>
+    $("#btnsubmit").click(function () {
+
+        console.log("Enviando formulario..");
+       
+       // var inputs = $(":text");
+
+   
+        var obj = {};
+        $(":text").each(function () {
+            obj[$(this).attr('id')] = $(this).val();
+        });
+
+        $("select").each(function () {
+            obj[$(this).attr('id')] = $(this).val();
+        });
+        
+        $("#hddProducto").val(JSON.stringify(obj));
+
+        $("#hddImagen").val($("#imgImagenProducto").attr('src'));
+
+        $("form")[0].submit();
+
+    });
+    
+
+    $("#btnImagen").click(function () {
+
+                    console.log("dentro de function cliente");
+
+                    var data = new FormData();
+                    var files = $("#file").get(0).files;
+                    if (files.length > 0) {
+                        data.append("file", files[0]);
+                    }
+
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("FileUpload")',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                    // alert("Data has been added successfully.");
+                        $('#imgPreview').html(data);
+                    //$("#StudentName").removeAttr("placeholder");
+                    // $("#buscarCliente").val(data.data);
+                        console.log("Recibio Imagen");
+                    },
+                    error: function () {
+                        console.log("---NO recibio Imagen---");
+                    // alert("Error while inserting data");
+                    }
+                    });
+                    return false;
+
+                    });
+
+ </script>
+
+}
+
+<h2>Crear Producto</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+     @Html.ValidationSummary(true)
+@Html.Hidden("hddProducto");
+@Html.Hidden("hddImagen");
+<div class="col-md-4 order-md-2 mb-4">
+    <h4 class="d-flex justify-content-between align-items-center mb-3 TopPadding">
+        <span class="text-muted">Imagen del Producto</span>
+    </h4>
+    <ul class="list-group mb-3 TopPadding">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div id="imgPreview"></div>
+        </li>
+    </ul>
+    <ul class="list-group mb-3 TopPadding">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <h6> @Html.LabelFor(model => model.ImagenProducto) </h6>
+            @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="file" name="file" id="file" style="width: 100%;" />
+                    <input id="btnImagen" type="button" value="Upload" class="submit" />
+                }
+        </li>
+    </ul>
+</div>
+
+ <div class="row">
+     <div class="col-md-12">
+         <div class="col-md-8">
+             <h3 class="mb-3 TopPadding">Datos del Producto</h3>
+             <div class="mb-3 TopPadding">
+                 <div class="row">
+                     <div class="col-md-2">
+                         @Html.LabelFor(model => model.CodProducto, new { @class = "LabelAlignbaseline" })
+
+                     </div>
+                     <div class="col-md-8">
+                         @Html.TextBoxFor(model => model.CodProducto, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.CodProducto)
+                     </div>
+                 </div>
+             </div>
+             <div class="mb-3 TopPadding">
+                 <div class="row">
+                     <div class="col-md-2">
+                         @Html.LabelFor(model => model.Descripcion, new { @class = "LabelAlignbaseline" })
+                     </div>
+                     <div class="col-md-8">
+                         @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.Descripcion)
+                     </div>
+                 </div>
+             </div>
+             <div class="mb-3 TopPadding">
+                 <div class="row">
+                     <div class="col-md-2">
+                         @Html.LabelFor(model => model.Stock, new { @class = "LabelAlignbaseline" })
+                     </div>
+                     <div class="col-md-8">
+                         @Html.TextBoxFor(model => model.Stock, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.Stock)
+                     </div>
+                 </div>
+             </div>
+             <div class="mb-3 TopPadding">
+                 <div class="row">
+                     <div class="col-md-2">
+                         @Html.LabelFor(model => model.StockReposicion, new { @class = "LabelAlignbaseline" })
+                     </div>
+                     <div class="col-md-8">
+                         @Html.TextBoxFor(model => model.StockReposicion, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.StockReposicion)
+                     </div>
+                 </div>
+             </div>
+             <div class="mb-3 TopPadding">
+                 <div class="row">
+                     <div class="col-md-2">
+                         @Html.LabelFor(model => model.PrecioCompra, new { @class = "LabelAlignbaseline" })
+                     </div>
+                     <div class="col-md-8">
+                         @Html.TextBoxFor(model => model.PrecioCompra, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.PrecioCompra)
+                     </div>
+                 </div>
+             </div>
+             <div class="mb-3 TopPadding">
+                 <div class="row">
+                     <div class="col-md-2">
+                         @Html.LabelFor(model => model.PrecioVenta, new { @class = "LabelAlignbaseline" })
+                     </div>
+                     <div class="col-md-8">
+                         @Html.TextBoxFor(model => model.PrecioVenta, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.PrecioVenta)
+                     </div>
+                 </div>
+             </div>
+             <div class="mb-3 TopPadding">
+                 <div class="row">
+                     <div class="col-md-2">
+                         @Html.Label("Categoria :", new { @class = "LabelAlignbaseline" })
+                     </div>
+                     <div class="col-md-8">
+                         @Html.DropDownList("CategoriaID", (IEnumerable<SelectListItem>)ViewBag.CategoriaID, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.CategoriaID)
+                     </div>
+                 </div>
+             </div>
+             <div class="mb-3 TopPadding">
+                 <div class="row">
+                     <div class="col-md-2">
+                         @Html.Label("Proveedor :", new { @class = "LabelAlignbaseline" })
+                     </div>
+                     <div class="col-md-8">
+                         @Html.DropDownList("ProveedorID", (IEnumerable<SelectListItem>)ViewBag.ProveedorID, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.ProveedorID)
+                     </div>
+                 </div>
+             </div>
+             <div class="mb-3 TopPadding">
+                 <div class="row">
+                     <div class="col-md-2">
+                         @Html.LabelFor(model => model.Detalle, new { @class = "LabelAlignbaseline" })
+                     </div>
+                     <div class="col-md-8">
+                         @Html.TextBoxFor(model => model.Detalle, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.Detalle)
+                     </div>
+                 </div>
+             </div>
+             <div class="mb-3 TopPadding">
+                 <div class="row">
+                     <div class="col-md-2">
+                         @Html.Label("Porcentaje :", new { @class = "LabelAlignbaseline" })
+                     </div>
+                     <div class="col-md-8">
+                         @Html.DropDownList("TIvaID", (IEnumerable<SelectListItem>)ViewBag.TIvaID, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.TIvaID)
+                     </div>
+                 </div>
+             </div>
+
+
+         </div>
+     </div>
+  </div>
+      <div class="row">
+          <div class="col-md-12 TopPadding">
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-4 TopPadding">
+                  <input id="btnsubmit" type="button" value="Crear" class="btn btn-default" />
+              </div>
+              <div class="col-md-4">
+              </div>
+
+          </div>
+
+    </div>
+
+}
+
+            <div>
+                @Html.ActionLink("Volver a la Lista", "Index")
+            </div>

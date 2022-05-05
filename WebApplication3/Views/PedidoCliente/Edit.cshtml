@@ -1,0 +1,366 @@
+﻿@model WebApplication3.Models.PEDIDOS_CLIENTES
+
+@{
+    ViewBag.Title = "View1";
+}
+
+
+@section Scripts
+{
+
+    <script type="text/javascript">
+
+    var productosArray = [];
+
+    function QuitarProducto(id) {
+
+        console.log("Se quitara el producto ID : " + id);
+
+        for (var i = 0; i < productosArray.length; i++) {
+            if (productosArray[i].productoID == id) {
+                productosArray.pop(productosArray[i]);
+            }
+        }
+
+        console.log(JSON.stringify(productosArray));
+
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AgregarProductoGrid")',
+            data: JSON.stringify(productosArray),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                // alert("Data has been added successfully.");
+                $('#GridProducto').html(data);
+                //$("#StudentName").removeAttr("placeholder");
+                // $("#buscarCliente").val(data.data);
+                console.log("Respuesta:" + data);
+            },
+            error: function () {
+                console.log("Error al retornar");
+                // alert("Error while inserting data");
+            }
+        });
+        return false;
+
+
+    }
+
+    function LlenarArray(){
+
+
+        var json = [];
+
+        json = @Html.Raw(Json.Encode(ViewBag.Productos));
+
+
+        for (var i = 0; i < json.length; i++) {
+
+            //productosArray.push(json[i]);
+
+            productosArray.push({
+                productoID: json[i].productoID,
+                descripcion: json[i].descripcion,
+                cantidad: parseInt(json[i].cantidad),
+                precio: parseFloat(json[i].precio),
+                subtotal: parseFloat(parseInt(json[i].cantidad) *  parseFloat(json[i].precio))
+            });
+
+
+
+        }
+
+        console.log(productosArray.length);
+
+
+    }
+
+
+    function CalcularTotal() {
+
+
+
+        var a = $('.subtotal').not('.grid-header');
+        console.log("valor de a :" + a[0].innerText);
+        var total = parseFloat(0);
+
+        for (var i = 0; i < a.length; i++) {
+
+            console.log(parseFloat(a[i].innerText.replace("$", "")))
+            total += parseFloat(a[i].innerText.replace("$", ""));
+
+        }
+        console.log("valor de total: " + total);
+        $('#txtTotales').val(total);
+
+    }
+
+
+    function EnviarFormulario () {
+
+
+
+        $('#hddCliente').val($('#hddClienteID').val());
+        $('#hddProductos').val(JSON.stringify(productosArray));
+        $('#hddTotal').val($('#txtTotales').val());
+        $('#hddAsignatario').val($('#AsignatarioID').val());
+        $('#hddPedidoID').val(@Html.DisplayFor( x => x.PedidoClienteID ));
+
+        //hddPedidoID
+
+        console.log($('#hddCliente'));
+        console.log($('#hddProductos'));
+        console.log($('#hddTotal').val());
+        console.log($('#hddAsignatario').val());
+        console.log($('#hddPedidoID').val());
+
+        $('form')[0].submit();
+
+    }
+
+
+    $(function () {
+
+        LlenarArray();
+
+        CalcularTotal();
+
+
+
+
+        $("#btnSearchCliente").click(function () {
+
+            console.log("dentro de function cliente");
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("BuscarNombreCliente")',
+                data: '{keyword: ' + JSON.stringify($("#buscarCliente").val()) + '}',
+                dataType: "html",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    // alert("Data has been added successfully.");
+
+                    //$("#StudentName").removeAttr("placeholder");
+                    // $("#buscarCliente").val(data.data);
+                    $('#ClienteDetalle').html(data);
+                },
+                error: function () {
+                    console.log("Error al retornar");
+                    // alert("Error while inserting data");
+                }
+            });
+            return false;
+
+        });
+
+        $("#btnSearchProducto").click(function () {
+
+            console.log("dentro de function prodcuto");
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("BuscarProducto")',
+                data: '{keyword: ' + JSON.stringify($("#buscarProducto").val()) + '}',
+                dataType: "html",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    // alert("Data has been added successfully.");
+
+                    //$("#StudentName").removeAttr("placeholder");
+                    // $("#buscarCliente").val(data.data);
+                    $('#ProductoDetalle').html(data);
+                },
+                error: function () {
+                    console.log("Error al retornar");
+                    // alert("Error while inserting data");
+                }
+            });
+            return false;
+
+        });
+
+
+        $("#btnAgregarProducto").click(function () {
+
+            console.log("dentro de function cliente: " + $("#ProductoID").val());
+
+
+            var flag = 0;
+
+            for (var i = 0; i < productosArray.length; i++) {
+                if( productosArray[i].productoID == $("#ProductoID").val())
+                {
+                    productosArray[i].cantidad += parseInt($("#txtCantidad").val());
+                    productosArray[i].subtotal = parseFloat(productosArray[i].cantidad * parseFloat($("#txtPrecio").val()));
+                    flag = 1;
+                }
+
+            }
+            console.log("Antes " + productosArray);
+
+            if (flag == 0) {
+                productosArray.push({
+                    productoID: $("#ProductoID").val(),
+                    descripcion: $("#txtDescripcion").val(),
+                    cantidad: parseInt($("#txtCantidad").val()),
+                    precio: parseFloat($("#txtPrecio").val()),
+                    subtotal: parseFloat(parseInt($("#txtCantidad").val()) *  parseFloat($("#txtPrecio").val()))
+                });
+
+            }
+
+            console.log("Despues " + productosArray);
+            //var product = { productoID: $("#ProductoID").val(), cantidad: $("#txtCantidad").val() };
+
+            // arrayProductos.push(product);
+
+            //var keyword = JSON.stringify(arrayProductos);
+            //var dat = JSON.stringify(arrayProductos);
+
+            // console.log(JSON.stringify($("#buscarProducto").val()));
+            console.log(JSON.stringify(productosArray));
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AgregarProductoGrid")',
+                data: JSON.stringify(productosArray),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    // alert("Data has been added successfully.");
+                    $('#GridProducto').html(data);
+                    CalcularTotal();
+                    //$("#StudentName").removeAttr("placeholder");
+                    // $("#buscarCliente").val(data.data);
+                    console.log("Respuesta:" + data);
+                },
+                error: function () {
+                    console.log("Error al retornar");
+                    // alert("Error while inserting data");
+                }
+            });
+            return false;
+
+
+
+
+        });
+
+
+
+
+    });
+
+
+    </script>
+}
+
+
+<h2>Detalle del Pedido N° : @Html.DisplayFor( x => x.PedidoClienteID )</h2>
+
+
+<div id="Asignatario">
+
+ @{
+     
+     SelectList sl = ViewBag.Usuarios;
+     @Html.DropDownListFor(m => m.AspNetUsers.UserName, sl, new { @id = "AsignatarioID" })
+     
+ }
+
+</div>
+
+<br />
+
+<div>
+
+    @Html.Label("Nombre:")
+    @Html.TextBox("buscarCliente")
+
+    <button id="btnSearchCliente">Buscar</button>
+
+    <br />
+</div>
+
+@using (Html.BeginForm("GuardarCambios", "PedidoCliente", FormMethod.Post))
+{
+
+
+
+    @Html.AntiForgeryToken()
+    @Html.Hidden("hddCliente");
+    @Html.Hidden("hddProductos");
+    @Html.Hidden("hddTotal");
+    @Html.Hidden("hddAsignatario");
+    @Html.Hidden("hddPedidoID");
+
+
+
+
+
+    <div id="ClienteDetalle">
+
+        @Html.Partial("_PartialDetalleCliente", Model.CLIENTES)
+
+    </div>
+    <br />
+    <div>
+
+        @Html.Label("Buscar Producto:")
+        @Html.TextBox("buscarProducto")
+
+        <button id="btnSearchProducto">Buscar</button>
+
+        <br />
+
+    </div>
+
+    <div id="ProductoDetalle">
+
+
+        @Html.Partial("_PartialDetalleProducto", new WebApplication3.Models.PRODUCTOS())
+
+
+    </div>
+    <br />
+
+
+    <div>
+
+        @Html.Label("Agregar Producto")
+
+        <button id="btnAgregarProducto">Agregar</button>
+
+        <br />
+
+    </div>
+
+    <div id="GridProducto">
+
+        @{
+            List<WebApplication3.Models.ProductosJqueryViewModel> _lst = new List<WebApplication3.Models.ProductosJqueryViewModel>();
+            if (ViewBag.Productos != null)
+            {
+                _lst = ViewBag.Productos;
+            }
+            
+       }
+
+
+        @Html.Partial("_PartialGridProductos", _lst)
+
+
+    </div>
+
+    <div>
+
+        <h3>Total : </h3> <input id="txtTotales" disabled="disabled" />
+
+    </div>
+    <br />
+
+    <button id="btnsave" onclick="EnviarFormulario()" type="button" class="btn btn-default"> Guardar </button>
+}
+
+@Html.ActionLink("Ir a Inicio", "Index")
+

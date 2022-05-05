@@ -1,0 +1,43 @@
+﻿@model  WebApplication3.Models.ModelViewFacturacionYPago
+
+
+    <br />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="row">
+                <div id="ClienteTipoPago">
+                    <div class="col-sm-2">Tipo de Pago:</div>
+                    <div class="col-sm-2">
+                        @foreach (var item in Model.tiposPago)
+                        {
+                            <div class="row">
+                                @Html.Label(item.Text + " :")
+                                @Html.CheckBox("chk" + item.Value, item.Selected)
+                            </div>
+                        }
+                    </div>
+
+                    <div id="ClienteTipoFacturacion">
+                        <div class="col-sm-2">Tipo de Facturacion:</div>
+                        <div class="col-sm-2">@Html.DropDownList("TipoFacturacion", Model.tiposFacturacion)</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    @Html.Label("NumeroCheque") @Html.TextBox("txtNumeroCheque")
+                    </br>
+                    @Html.Label("Importe") @Html.TextBox("txtImporte", "0.00", new { type = "number", required = "true", name = "price", min = "0.00", step = ".01" })
+                    </br>
+                    @Html.Label("DetalleMercaderia") @Html.TextArea("areaMercaderia")  @Html.Label("ValorMercaderia") @Html.TextBox("txtValorMercaderia")
+                    </br>
+                    @Html.Label("nombreUsuario") @Html.TextBox("txtNombreUsuario")
+                    </br>
+                    @Html.Label("numeroCuenta") @Html.TextBox("txtNumeroCuenta") @Html.Label("CC") @Html.CheckBox("chkCC") @Html.Label("CA") @Html.CheckBox("chkCA")
+                </div>
+            </div>
+
+
+            </div>
+   </div>

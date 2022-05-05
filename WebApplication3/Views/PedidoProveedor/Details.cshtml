@@ -1,0 +1,50 @@
+﻿@model WebApplication3.Models.PEDIDOS_PROVEEDORES
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PEDIDOS_PROVEEDORES</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESTADOS_PEDIDOS.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESTADOS_PEDIDOS.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDORES.ListaPrecios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDORES.ListaPrecios)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PedidoProveedorID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<WebApplication3.Models.ProductosJqueryViewModel>
+
+@using GridMvc.Html
+
+<div>
+    @Html.Grid(Model).Columns(columns =>
+                        {
+                            columns.Add(foo => foo.productoID).Titled("Id").SetWidth(110);
+                            columns.Add(foo => foo.descripcion).Titled("Descripcion").Sortable(true);
+                            columns.Add(foo => foo.cantidad).Titled("Cantidad").Sortable(true);
+                            columns.Add(foo => foo.precio).Format("{0:0.00}").Titled("Precio Unitario").Sortable(true);
+                            columns.Add(foo => foo.subTotal).Format("{0:0.00}").Titled("Sub total").Css("subtotal");
+                            columns.Add().Titled("Eliminar").RenderValueAs(data => new HtmlString("<button onclick='QuitarProducto("+data.productoID+")'>Borrar</button>")).Encoded(false).Sanitized(false);
+                        }).WithPaging(20)
+
+</div>
+@*<div>
+        <h4>PRODUCTOS</h4> .For(c => "<button onclick=\"javascript:window.open('http://gmail.com');\">gmail</button>").Named("My New Column").Encode(false)
+        <hr />
+        <dl class="dl-horizontal"> (
+                         "<button type='submit' value=''>Download</button>
+                          <button type='button' value=''>Upload</button>"
+                       )
+            <dt>
+                @Html.DisplayNameFor(model => model.CodProducto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CodProducto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Stock)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Stock)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StockReposicion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StockReposicion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PrecioCompra)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PrecioCompra)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PrecioVenta)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PrecioVenta)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ImagenProducto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ImagenProducto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Detalle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Detalle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CATEGORIAS.Descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CATEGORIAS.Descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PROVEEDORES.ListaPrecios)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PROVEEDORES.ListaPrecios)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TIPO_IVA.TIvaID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TIPO_IVA.TIvaID)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductoID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

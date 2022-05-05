@@ -1,0 +1,177 @@
+﻿@model IEnumerable<WebApplication3.Models.PROVEEDORES>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ListaPrecios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RazonSocial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CUIT_CUIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Localidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodPostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zoom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mail1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mail2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descuento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comentarios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rubro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroCuenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Banco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CBU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsuarioMercadolibre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVINCIAS.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ListaPrecios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RazonSocial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CUIT_CUIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Localidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodPostal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zoom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mail1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mail2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descuento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comentarios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rubro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroCuenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Banco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CBU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioMercadolibre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVINCIAS.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProveedorID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProveedorID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProveedorID })
+        </td>
+    </tr>
+}
+
+</table>

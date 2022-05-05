@@ -1,0 +1,185 @@
+﻿@model IEnumerable<WebApplication3.Models.PRODUCTOS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section Scripts
+    {
+    <script>
+        var flag = 0;
+        $(".imagen").mouseout(function ($this) {
+            //$('#imgPreview').removeAttr("style");
+            //$('#imgPreview').attr("style", "display:none;");
+
+        });
+
+        $(".imagen").mouseover(function ($this) {
+            console.log($this.currentTarget);
+            var element = $("#" + $this.currentTarget.id);
+            console.log(element);
+
+            if (element.attr("title") == "<img  src='' />") {
+
+                var id = $this.currentTarget.id;
+                //  console.log(id);
+                // console.log('{keyword: ' + JSON.stringify('Hola') + '}');
+
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("VerImagen")',
+                    data: '{keyword: ' + JSON.stringify(id) + '}',
+                    dataType: "html",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        // alert("Data has been added successfully.");
+
+                        element.tooltip({
+                            animated: 'fade',
+                            placement: 'bottom',
+                            html: true
+                        });
+
+                        element.attr("data-original-title", data);
+
+                        element.tooltip('show');
+
+                        //$("#StudentName").removeAttr("placeholder");
+                        // $("#buscarCliente").val(data.data);
+                        console.log("Recibio Imagen");
+
+
+
+                       
+
+                    },
+                    error: function () {
+                        console.log("---NO recibio Imagen---");
+                        // alert("Error while inserting data");
+                    }
+
+
+
+                });
+
+            }
+            else {
+
+                console.log("Ya se recibio imagen");
+            }
+
+        });
+    
+      
+
+        $(function () {
+
+
+         //   ShowTooltip();
+
+
+        });
+
+
+    
+    </script>
+    
+    
+    
+    }
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockReposicion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioCompra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioVenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagenProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </th>
+        <th>
+            @Html.DisplayName("Categoria")
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_IVA.TIvaID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StockReposicion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioCompra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioVenta)
+        </td>
+        <td>
+            @*@Html.Label("Ver Imagen", new { id = item.ProductoID, Class = "imagen" })
+            @Html.DisplayText("Texto")*@
+            
+            <button id="@item.ProductoID" class='btn btn-default imagen' data-toggle="tooltip" title="<img  src='' />">
+                <i class="icon-shopping-cart"> Ver Imagen</i> </button>
+            
+
+
+            @*<div id="imgPreview" style="display:none;">*@
+            @*</div>*@
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Detalle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CATEGORIAS.Descripcion)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_IVA.Porcentaje)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductoID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,46 @@
+﻿@model WebApplication3.Models.ModelViewMovimientoCuentaCliente
+
+<h3>Detalle del Movimiento</h3>
+
+<div class="col-lg-12">
+    <div class="row">
+        <h2>Pago</h2>
+        <div class="col-lg-3">
+            @Html.Label("Fecha de Pago:", new { For = "fechaPago" })
+            @Html.TextBoxFor(model => model.fechaPago, new { @class = "datepicker", @type = "date" })
+
+
+        </div>
+
+        <div class="col-lg-3">
+            @Html.Label("Tipo:", new { For = "Tipo" })
+            @Html.DropDownList("Tipo", @Model.tipo)
+
+        </div>
+
+        <div id="SeccionCuenta" class="col-lg-3">
+            @Html.Label("Cuenta:")
+            @Html.DropDownList("Cuenta", @Model.cuentas)
+        </div>
+    </div>
+    <div class="row">
+        <h2>Referencia</h2>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-md-12"> @Html.CheckBox("numeroPedido", false, new { onchange = "chkNumeroPedido();" }) @Html.Label("Referencia a Pedido :") @Html.TextBox("PedidoID", String.Empty , new { disabled = "disabled" }) <button type="button" id="btnBuscarPedido" disabled="disabled" onclick="BuscarPedido();"> Buscar </button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                   
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">@Html.CheckBox("chkTextArea", false, new { onchange = "cambiarTextArea();" }) @Html.Label("Detalles:", new { For = "Detalle" }) @Html.TextArea("Detalle", Model.detalle, new { Class = "areaDetails", disabled = "disabled" }) </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+

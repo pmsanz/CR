@@ -1,0 +1,281 @@
+﻿@model WebApplication3.Models.ModelViewMovimientoCuentaCliente
+@{
+    ViewBag.Title = "MovimientoCuentaCliente";
+}
+
+@section Scripts
+{
+
+    <style>
+
+        .areaDetails {
+        
+            width:100%;
+            margin-top:5%;
+        
+        }
+
+
+    </style>
+
+    <script type="text/javascript">
+
+        var productosArray = [];
+
+       
+        function BuscarPedido() {
+
+            var id = $("#PedidoID").val();
+
+            console.log(id);
+
+            if (id != 0 && id != undefined) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("BuscarPedido")',
+                    data: '{keyword: ' + JSON.stringify(id) + '}',
+                    dataType: "html",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        // alert("Data has been added successfully.");
+                        if (isNaN(data))
+                        {
+                            $("#PedidoID").tooltip({
+                                animated: 'fade',
+                                placement: 'bottom',
+                                html: true
+                            });
+
+                            $("#PedidoID").attr("data-original-title", data);
+
+                            $("#PedidoID").tooltip('show');
+                            $("#PedidoID").val("");
+                        }
+                        else
+                        {
+                            $("#PedidoID").val(data);
+                            $("#PedidoID").tooltip({
+                                animated: 'fade',
+                                placement: 'bottom',
+                                html: true
+                            });
+
+                            $("#PedidoID").attr("data-original-title", "Pedido Encontrado N° :" + data);
+
+                            $("#PedidoID").tooltip('show');
+                        }
+                       // console.log("Resultado " + data);
+                        //$("#StudentName").removeAttr("placeholder");
+                        // $("#buscarCliente").val(data.data);
+                        //$('#detalleMovimiento').html(data);
+                    },
+                    error: function () {
+                        console.log("Error al retornar");
+                        // alert("Error while inserting data");
+                    }
+                });
+            }
+            return false;
+
+
+        }
+
+
+
+        function CalcularTotal() {
+
+
+
+            var a = $('.subtotal').not('.grid-header');
+            console.log("valor de a :" + a[0].innerText);
+            var total = parseFloat(0);
+
+            for (var i = 0; i < a.length; i++) {
+
+                console.log(parseFloat(a[i].innerText.replace("$", "")))
+                total += parseFloat(a[i].innerText.replace("$", ""));
+
+            }
+            console.log("valor de total: " + total);
+            $('#txtTotales').val(total);
+
+        }
+
+
+        function EnviarFormulario () {
+
+
+
+            $('#hddCliente').val($('#hddClienteID').val());
+            $('#hddProductos').val(JSON.stringify(productosArray));
+            $('#hddTotal').val($('#txtTotales').val());
+            $('#hddAsignatario').val($('#Usuarios').val());
+           // $('#hddTipoPago').val($('#slTipoPagos').val());
+            $('#hddTipoFacturacion').val($('#TipoFacturacion').val());
+
+            console.log($('#hddCliente').val());
+            console.log($('#hddAsignatario').val());
+            console.log($('#hddProductos').val());
+            console.log($('#hddTotal').val());
+            console.log($('#hddTipoPago').val());
+            console.log($('#hddTipoFacturacion').val());
+
+            $('form')[0].submit();
+
+        }
+
+        function chkNumeroPedido() {
+
+            var chk = $("#numeroPedido");
+           
+            if (chk.prop("checked")) {
+                $("#PedidoID").removeAttr("disabled");
+                $("#btnBuscarPedido").removeAttr("disabled");
+            }
+            if (!chk.prop("checked")) {
+                $("#PedidoID").attr("disabled", "disabled");
+                $("#btnBuscarPedido").attr("disabled", "disabled");
+            }
+
+        }
+
+        function cambiarTextArea() {
+
+            var chk = $('#chkTextArea');
+            
+            if (chk.prop("checked")) {
+                    $("#Detalle").removeAttr("disabled");
+           
+                }
+            if (!chk.prop("checked")) {
+                    $("#Detalle").attr("disabled", "disabled");
+           
+                }
+            
+
+        }
+
+
+        $(function () {
+
+            
+
+          
+           
+            $("#btnSearchCliente").click(function () {
+
+                console.log("dentro de function cliente");
+                //console.log('{keyword: ' + JSON.stringify($("#buscarCliente").val()) + '}');
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("BuscarNombreCliente","PedidoCliente")',
+                    data: '{keyword: ' + JSON.stringify($("#buscarCliente").val()) + '}',
+                    dataType: "html",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        // alert("Data has been added successfully.");
+                        //var id = data.find("#hddClienteID");
+                        var id = $(data).find("#hddClienteID").val();
+                        //console.log("Cliente dentro del Return: " + $(data).find("#hddClienteID"));
+                        //console.log("Cliente dentro del Return: " + data);
+                        //$("#StudentName").removeAttr("placeholder");
+                        // $("#buscarCliente").val(data.data);
+                        $('#ClienteDetalle').html(data);
+                        BuscarCuentas(id);
+                    },
+                    error: function () {
+                        console.log("Error al retornar");
+                        // alert("Error while inserting data");
+                    }
+                });
+
+               // BuscarCuentas();
+                return false;
+
+            });
+
+            function BuscarCuentas(id) {
+
+                //var id = $("#hddClienteID").val();
+
+              
+                if (id != 0 && id != undefined) {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("BuscarCuentas")',
+                        data: '{keyword: ' + JSON.stringify(id) + '}',
+                        dataType: "html",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            // alert("Data has been added successfully.");
+                           
+                            //$("#StudentName").removeAttr("placeholder");
+                            // $("#buscarCliente").val(data.data);
+                            $('#detalleMovimiento').html(data);
+                        },
+                        error: function () {
+                            console.log("Error al retornar");
+                            // alert("Error while inserting data");
+                        }
+                    });
+                }
+                return false;
+
+
+            }
+
+
+        });
+
+
+    </script>
+}
+
+<h2>Ingrese Detalle de Cuenta para Cliente</h2>
+
+<br />  
+
+@using (Html.BeginForm("NuevoMovimiento", "CuentaCliente"))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+
+        @Html.Label("Nombre:")
+        @Html.TextBox("buscarCliente")
+
+        <button id="btnSearchCliente">Buscar</button>
+
+        <br />
+    </div>
+
+    <div id="ClienteDetalle">
+
+        @Html.Partial("_PartialDetalleCliente", Model.cliente)
+
+    </div>
+
+    <div id="facturacionypago" class="row">
+
+        @Html.Partial("_PartialFacturacionYPago", Model.fyp)
+
+    </div>
+
+    <div id="detalleMovimiento" class="row">
+
+        @Html.Partial("_PartialViewDetalleMovimiento", Model)
+
+    </div>
+       
+    
+    <input type="submit" value="Generar" />
+    
+}
+
+<br />
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

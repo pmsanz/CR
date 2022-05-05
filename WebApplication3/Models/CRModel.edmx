@@ -1,0 +1,1966 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORIAS">
+          <Key>
+            <PropertyRef Name="CategoriaID" />
+          </Key>
+          <Property Name="CategoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+          </Key>
+          <Property Name="ClienteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" />
+          <Property Name="CUIT_CUIL" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Direccion1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion2" Type="varchar" MaxLength="100" />
+          <Property Name="ProvinciaID" Type="int" Nullable="false" />
+          <Property Name="Localidad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodPostal" Type="int" Nullable="false" />
+          <Property Name="Latitud" Type="varchar" MaxLength="100" />
+          <Property Name="Longitud" Type="varchar" MaxLength="100" />
+          <Property Name="Zoom" Type="int" />
+          <Property Name="Telefono1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono2" Type="varchar" MaxLength="50" />
+          <Property Name="Mail1" Type="varchar" MaxLength="100" />
+          <Property Name="Mail2" Type="varchar" MaxLength="100" />
+          <Property Name="Descuento" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="300" />
+          <Property Name="UsuarioMercadolibre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CLIENTESTIPO_FACTURACION">
+          <Key>
+            <PropertyRef Name="CLIENTES_ClienteID" />
+            <PropertyRef Name="TIPO_FACTURACIONES_TFacturacionID" />
+          </Key>
+          <Property Name="CLIENTES_ClienteID" Type="int" Nullable="false" />
+          <Property Name="TIPO_FACTURACIONES_TFacturacionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTESTIPO_PAGOS">
+          <Key>
+            <PropertyRef Name="PEDIDOS_CLIENTES_PedidoClienteID" />
+            <PropertyRef Name="TIPO_PAGOS_TPagoID" />
+          </Key>
+          <Property Name="PEDIDOS_CLIENTES_PedidoClienteID" Type="int" Nullable="false" />
+          <Property Name="TIPO_PAGOS_TPagoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CUENTAS_CLIENTES">
+          <Key>
+            <PropertyRef Name="CCuentaID" />
+          </Key>
+          <Property Name="CCuentaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteID" Type="int" Nullable="false" />
+          <Property Name="NumeroCuenta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CUENTAS_PROVEEDORES">
+          <Key>
+            <PropertyRef Name="PCuentaID" />
+          </Key>
+          <Property Name="PCuentaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProveedorID" Type="int" Nullable="false" />
+          <Property Name="NumeroCuenta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ESTADOS_PEDIDOS">
+          <Key>
+            <PropertyRef Name="EPedidoID" />
+          </Key>
+          <Property Name="EPedidoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MOVIMIENTOS_CLIENTES">
+          <Key>
+            <PropertyRef Name="CMovimientoID" />
+          </Key>
+          <Property Name="CMovimientoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CCuentaID" Type="int" Nullable="false" />
+          <Property Name="PedidoClienteID" Type="int" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Debito" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Credito" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="MOVIMIENTOS_PROVEEDORES">
+          <Key>
+            <PropertyRef Name="PMovimientoID" />
+          </Key>
+          <Property Name="PMovimientoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PCuentaID" Type="int" Nullable="false" />
+          <Property Name="PedidoProveedorID" Type="int" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Debito" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Credito" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PEDIDOS_CLIENTES">
+          <Key>
+            <PropertyRef Name="PedidoClienteID" />
+          </Key>
+          <Property Name="PedidoClienteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EPedidoID" Type="int" Nullable="false" />
+          <Property Name="ClienteID" Type="int" Nullable="false" />
+          <Property Name="AsignatarioID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TFacturacionID" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="FechaModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PEDIDOS_CLIENTES_DETALLES">
+          <Key>
+            <PropertyRef Name="PCDetalleID" />
+          </Key>
+          <Property Name="PCDetalleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PedidoClienteID" Type="int" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ProductoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PEDIDOS_PROVEEDORES">
+          <Key>
+            <PropertyRef Name="PedidoProveedorID" />
+          </Key>
+          <Property Name="PedidoProveedorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EPedidoID" Type="int" Nullable="false" />
+          <Property Name="ProveedorID" Type="int" Nullable="false" />
+          <Property Name="AsignatarioID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TFacturacionID" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="FechaModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PEDIDOS_PROVEEDORES_DETALLES">
+          <Key>
+            <PropertyRef Name="PPDetalleID" />
+          </Key>
+          <Property Name="PPDetalleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PedidoProveedorID" Type="int" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ProductoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS">
+          <Key>
+            <PropertyRef Name="ProductoID" />
+          </Key>
+          <Property Name="ProductoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodProducto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="StockReposicion" Type="int" Nullable="false" />
+          <Property Name="PrecioCompra" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PrecioVenta" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CategoriaID" Type="int" Nullable="false" />
+          <Property Name="ImagenProducto" Type="varbinary(max)" />
+          <Property Name="ProveedorID" Type="int" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="300" />
+          <Property Name="TIvaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROVEEDORES">
+          <Key>
+            <PropertyRef Name="ProveedorID" />
+          </Key>
+          <Property Name="ProveedorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ListaPrecios" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CUIT_CUIL" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Direccion1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion2" Type="varchar" MaxLength="100" />
+          <Property Name="ProvinciaID" Type="int" Nullable="false" />
+          <Property Name="Localidad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodPostal" Type="int" Nullable="false" />
+          <Property Name="Latitud" Type="varchar" MaxLength="100" />
+          <Property Name="Longitud" Type="varchar" MaxLength="100" />
+          <Property Name="Zoom" Type="int" />
+          <Property Name="Telefono1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono2" Type="varchar" MaxLength="50" />
+          <Property Name="Mail1" Type="varchar" MaxLength="100" />
+          <Property Name="Mail2" Type="varchar" MaxLength="100" />
+          <Property Name="Descuento" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="300" />
+          <Property Name="Rubro" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumeroCuenta" Type="varchar" MaxLength="50" />
+          <Property Name="Banco" Type="varchar" MaxLength="50" />
+          <Property Name="CBU" Type="varchar" MaxLength="50" />
+          <Property Name="CA" Type="bit" />
+          <Property Name="CC" Type="bit" />
+          <Property Name="UsuarioMercadolibre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PROVEEDORESTIPO_FACTURACION">
+          <Key>
+            <PropertyRef Name="PROVEEDORES_ProveedorID" />
+            <PropertyRef Name="TIPO_FACTURACIONES_TFacturacionID" />
+          </Key>
+          <Property Name="PROVEEDORES_ProveedorID" Type="int" Nullable="false" />
+          <Property Name="TIPO_FACTURACIONES_TFacturacionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROVEEDORESTIPO_PAGOS">
+          <Key>
+            <PropertyRef Name="PEDIDOS_PROVEEDORES_PedidoProveedorID" />
+            <PropertyRef Name="TIPO_PAGOS_TPagoID" />
+          </Key>
+          <Property Name="PEDIDOS_PROVEEDORES_PedidoProveedorID" Type="int" Nullable="false" />
+          <Property Name="TIPO_PAGOS_TPagoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROVINCIAS">
+          <Key>
+            <PropertyRef Name="ProvinciaID" />
+          </Key>
+          <Property Name="ProvinciaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TIPO_FACTURACIONES">
+          <Key>
+            <PropertyRef Name="TFacturacionID" />
+          </Key>
+          <Property Name="TFacturacionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIPO_IVA">
+          <Key>
+            <PropertyRef Name="TIvaID" />
+          </Key>
+          <Property Name="TIvaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Porcentaje" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIPO_PAGOS">
+          <Key>
+            <PropertyRef Name="TPagoID" />
+          </Key>
+          <Property Name="TPagoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__PEDIDOS_C__Produ__160F4887">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="PEDIDOS_CLIENTES_DETALLES" Type="Self.PEDIDOS_CLIENTES_DETALLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ProductoID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES_DETALLES">
+              <PropertyRef Name="ProductoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PEDIDOS_C__TFact__2CF2ADDF">
+          <End Role="TIPO_FACTURACIONES" Type="Self.TIPO_FACTURACIONES" Multiplicity="0..1" />
+          <End Role="PEDIDOS_CLIENTES" Type="Self.PEDIDOS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_FACTURACIONES">
+              <PropertyRef Name="TFacturacionID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES">
+              <PropertyRef Name="TFacturacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PEDIDOS_P__Produ__17036CC0">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="PEDIDOS_PROVEEDORES_DETALLES" Type="Self.PEDIDOS_PROVEEDORES_DETALLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ProductoID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES_DETALLES">
+              <PropertyRef Name="ProductoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PEDIDOS_P__TFact__32AB8735">
+          <End Role="TIPO_FACTURACIONES" Type="Self.TIPO_FACTURACIONES" Multiplicity="0..1" />
+          <End Role="PEDIDOS_PROVEEDORES" Type="Self.PEDIDOS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_FACTURACIONES">
+              <PropertyRef Name="TFacturacionID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES">
+              <PropertyRef Name="TFacturacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTES_PROVINCIAS">
+          <End Role="PROVINCIAS" Type="Self.PROVINCIAS" Multiplicity="1" />
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCIAS">
+              <PropertyRef Name="ProvinciaID" />
+            </Principal>
+            <Dependent Role="CLIENTES">
+              <PropertyRef Name="ProvinciaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTESTIPO_FACTURACION_CLIENTES">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+          <End Role="CLIENTESTIPO_FACTURACION" Type="Self.CLIENTESTIPO_FACTURACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="CLIENTESTIPO_FACTURACION">
+              <PropertyRef Name="CLIENTES_ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTESTIPO_FACTURACION_TIPO_FACTURACIONES">
+          <End Role="TIPO_FACTURACIONES" Type="Self.TIPO_FACTURACIONES" Multiplicity="1" />
+          <End Role="CLIENTESTIPO_FACTURACION" Type="Self.CLIENTESTIPO_FACTURACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_FACTURACIONES">
+              <PropertyRef Name="TFacturacionID" />
+            </Principal>
+            <Dependent Role="CLIENTESTIPO_FACTURACION">
+              <PropertyRef Name="TIPO_FACTURACIONES_TFacturacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTESTIPO_PAGOS_PEDIDOS_CLIENTES">
+          <End Role="PEDIDOS_CLIENTES" Type="Self.PEDIDOS_CLIENTES" Multiplicity="1" />
+          <End Role="CLIENTESTIPO_PAGOS" Type="Self.CLIENTESTIPO_PAGOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDOS_CLIENTES">
+              <PropertyRef Name="PedidoClienteID" />
+            </Principal>
+            <Dependent Role="CLIENTESTIPO_PAGOS">
+              <PropertyRef Name="PEDIDOS_CLIENTES_PedidoClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTESTIPO_PAGOS_TIPO_PAGOS">
+          <End Role="TIPO_PAGOS" Type="Self.TIPO_PAGOS" Multiplicity="1" />
+          <End Role="CLIENTESTIPO_PAGOS" Type="Self.CLIENTESTIPO_PAGOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_PAGOS">
+              <PropertyRef Name="TPagoID" />
+            </Principal>
+            <Dependent Role="CLIENTESTIPO_PAGOS">
+              <PropertyRef Name="TIPO_PAGOS_TPagoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUENTAS_CLIENTES_CLIENTES">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+          <End Role="CUENTAS_CLIENTES" Type="Self.CUENTAS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="CUENTAS_CLIENTES">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUENTAS_PROVEEDORES_PROVEEDORES">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="CUENTAS_PROVEEDORES" Type="Self.CUENTAS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="ProveedorID" />
+            </Principal>
+            <Dependent Role="CUENTAS_PROVEEDORES">
+              <PropertyRef Name="ProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVIMIENTOS_CLIENTES_CUENTAS_CLIENTES">
+          <End Role="CUENTAS_CLIENTES" Type="Self.CUENTAS_CLIENTES" Multiplicity="1" />
+          <End Role="MOVIMIENTOS_CLIENTES" Type="Self.MOVIMIENTOS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTAS_CLIENTES">
+              <PropertyRef Name="CCuentaID" />
+            </Principal>
+            <Dependent Role="MOVIMIENTOS_CLIENTES">
+              <PropertyRef Name="CCuentaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVIMIENTOS_PROVEEDORES_CUENTAS_PROVEEDORES">
+          <End Role="CUENTAS_PROVEEDORES" Type="Self.CUENTAS_PROVEEDORES" Multiplicity="1" />
+          <End Role="MOVIMIENTOS_PROVEEDORES" Type="Self.MOVIMIENTOS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTAS_PROVEEDORES">
+              <PropertyRef Name="PCuentaID" />
+            </Principal>
+            <Dependent Role="MOVIMIENTOS_PROVEEDORES">
+              <PropertyRef Name="PCuentaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_CLIENTES_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="PEDIDOS_CLIENTES" Type="Self.PEDIDOS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES">
+              <PropertyRef Name="AsignatarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_CLIENTES_CLIENTES">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+          <End Role="PEDIDOS_CLIENTES" Type="Self.PEDIDOS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_CLIENTES_DETALLES_PEDIDOS_CLIENTES">
+          <End Role="PEDIDOS_CLIENTES" Type="Self.PEDIDOS_CLIENTES" Multiplicity="1" />
+          <End Role="PEDIDOS_CLIENTES_DETALLES" Type="Self.PEDIDOS_CLIENTES_DETALLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDOS_CLIENTES">
+              <PropertyRef Name="PedidoClienteID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES_DETALLES">
+              <PropertyRef Name="PedidoClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_CLIENTES_ESTADOS_PEDIDOS">
+          <End Role="ESTADOS_PEDIDOS" Type="Self.ESTADOS_PEDIDOS" Multiplicity="1" />
+          <End Role="PEDIDOS_CLIENTES" Type="Self.PEDIDOS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADOS_PEDIDOS">
+              <PropertyRef Name="EPedidoID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES">
+              <PropertyRef Name="EPedidoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_PROVEEDORES_DETALLES_PEDIDOS_PROVEEDORES">
+          <End Role="PEDIDOS_PROVEEDORES" Type="Self.PEDIDOS_PROVEEDORES" Multiplicity="1" />
+          <End Role="PEDIDOS_PROVEEDORES_DETALLES" Type="Self.PEDIDOS_PROVEEDORES_DETALLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDOS_PROVEEDORES">
+              <PropertyRef Name="PedidoProveedorID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES_DETALLES">
+              <PropertyRef Name="PedidoProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_PROVEEDORES_ESTADOS_PEDIDOS">
+          <End Role="ESTADOS_PEDIDOS" Type="Self.ESTADOS_PEDIDOS" Multiplicity="1" />
+          <End Role="PEDIDOS_PROVEEDORES" Type="Self.PEDIDOS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADOS_PEDIDOS">
+              <PropertyRef Name="EPedidoID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES">
+              <PropertyRef Name="EPedidoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_PROVEEDORES_PROVEEDORES">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="PEDIDOS_PROVEEDORES" Type="Self.PEDIDOS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="ProveedorID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES">
+              <PropertyRef Name="ProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTOS_CATEGORIAS">
+          <End Role="CATEGORIAS" Type="Self.CATEGORIAS" Multiplicity="1" />
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIAS">
+              <PropertyRef Name="CategoriaID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="CategoriaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTOS_PROVEEDORES">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="ProveedorID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="ProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTOS_TIPO_IVA">
+          <End Role="TIPO_IVA" Type="Self.TIPO_IVA" Multiplicity="1" />
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_IVA">
+              <PropertyRef Name="TIvaID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="TIvaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVEEDORES_PROVINCIAS">
+          <End Role="PROVINCIAS" Type="Self.PROVINCIAS" Multiplicity="1" />
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCIAS">
+              <PropertyRef Name="ProvinciaID" />
+            </Principal>
+            <Dependent Role="PROVEEDORES">
+              <PropertyRef Name="ProvinciaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVEEDORESTIPO_FACTURACION_PROVEEDORES">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="PROVEEDORESTIPO_FACTURACION" Type="Self.PROVEEDORESTIPO_FACTURACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="ProveedorID" />
+            </Principal>
+            <Dependent Role="PROVEEDORESTIPO_FACTURACION">
+              <PropertyRef Name="PROVEEDORES_ProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVEEDORESTIPO_FACTURACION_TIPO_FACTURACIONES">
+          <End Role="TIPO_FACTURACIONES" Type="Self.TIPO_FACTURACIONES" Multiplicity="1" />
+          <End Role="PROVEEDORESTIPO_FACTURACION" Type="Self.PROVEEDORESTIPO_FACTURACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_FACTURACIONES">
+              <PropertyRef Name="TFacturacionID" />
+            </Principal>
+            <Dependent Role="PROVEEDORESTIPO_FACTURACION">
+              <PropertyRef Name="TIPO_FACTURACIONES_TFacturacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVEEDORESTIPO_PAGOS_PEDIDOS_PROVEEDORES">
+          <End Role="PEDIDOS_PROVEEDORES" Type="Self.PEDIDOS_PROVEEDORES" Multiplicity="1" />
+          <End Role="PROVEEDORESTIPO_PAGOS" Type="Self.PROVEEDORESTIPO_PAGOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDOS_PROVEEDORES">
+              <PropertyRef Name="PedidoProveedorID" />
+            </Principal>
+            <Dependent Role="PROVEEDORESTIPO_PAGOS">
+              <PropertyRef Name="PEDIDOS_PROVEEDORES_PedidoProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVEEDORESTIPO_PAGOS_TIPO_PAGOS">
+          <End Role="TIPO_PAGOS" Type="Self.TIPO_PAGOS" Multiplicity="1" />
+          <End Role="PROVEEDORESTIPO_PAGOS" Type="Self.PROVEEDORESTIPO_PAGOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_PAGOS">
+              <PropertyRef Name="TPagoID" />
+            </Principal>
+            <Dependent Role="PROVEEDORESTIPO_PAGOS">
+              <PropertyRef Name="TIPO_PAGOS_TPagoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PEDIDOS_PROVEEDORES_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="PEDIDOS_PROVEEDORES" Type="Self.PEDIDOS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES">
+              <PropertyRef Name="AsignatarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CRModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATEGORIAS" EntityType="Self.CATEGORIAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTESTIPO_FACTURACION" EntityType="Self.CLIENTESTIPO_FACTURACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTESTIPO_PAGOS" EntityType="Self.CLIENTESTIPO_PAGOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUENTAS_CLIENTES" EntityType="Self.CUENTAS_CLIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUENTAS_PROVEEDORES" EntityType="Self.CUENTAS_PROVEEDORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ESTADOS_PEDIDOS" EntityType="Self.ESTADOS_PEDIDOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MOVIMIENTOS_CLIENTES" EntityType="Self.MOVIMIENTOS_CLIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MOVIMIENTOS_PROVEEDORES" EntityType="Self.MOVIMIENTOS_PROVEEDORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PEDIDOS_CLIENTES" EntityType="Self.PEDIDOS_CLIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PEDIDOS_CLIENTES_DETALLES" EntityType="Self.PEDIDOS_CLIENTES_DETALLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PEDIDOS_PROVEEDORES" EntityType="Self.PEDIDOS_PROVEEDORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PEDIDOS_PROVEEDORES_DETALLES" EntityType="Self.PEDIDOS_PROVEEDORES_DETALLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVEEDORES" EntityType="Self.PROVEEDORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVEEDORESTIPO_FACTURACION" EntityType="Self.PROVEEDORESTIPO_FACTURACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVEEDORESTIPO_PAGOS" EntityType="Self.PROVEEDORESTIPO_PAGOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVINCIAS" EntityType="Self.PROVINCIAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_FACTURACIONES" EntityType="Self.TIPO_FACTURACIONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_IVA" EntityType="Self.TIPO_IVA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_PAGOS" EntityType="Self.TIPO_PAGOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PEDIDOS_C__Produ__160F4887" Association="Self.FK__PEDIDOS_C__Produ__160F4887">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="PEDIDOS_CLIENTES_DETALLES" EntitySet="PEDIDOS_CLIENTES_DETALLES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEDIDOS_C__TFact__2CF2ADDF" Association="Self.FK__PEDIDOS_C__TFact__2CF2ADDF">
+            <End Role="TIPO_FACTURACIONES" EntitySet="TIPO_FACTURACIONES" />
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEDIDOS_P__Produ__17036CC0" Association="Self.FK__PEDIDOS_P__Produ__17036CC0">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="PEDIDOS_PROVEEDORES_DETALLES" EntitySet="PEDIDOS_PROVEEDORES_DETALLES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEDIDOS_P__TFact__32AB8735" Association="Self.FK__PEDIDOS_P__TFact__32AB8735">
+            <End Role="TIPO_FACTURACIONES" EntitySet="TIPO_FACTURACIONES" />
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTES_PROVINCIAS" Association="Self.FK_CLIENTES_PROVINCIAS">
+            <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTESTIPO_FACTURACION_CLIENTES" Association="Self.FK_CLIENTESTIPO_FACTURACION_CLIENTES">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="CLIENTESTIPO_FACTURACION" EntitySet="CLIENTESTIPO_FACTURACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTESTIPO_FACTURACION_TIPO_FACTURACIONES" Association="Self.FK_CLIENTESTIPO_FACTURACION_TIPO_FACTURACIONES">
+            <End Role="TIPO_FACTURACIONES" EntitySet="TIPO_FACTURACIONES" />
+            <End Role="CLIENTESTIPO_FACTURACION" EntitySet="CLIENTESTIPO_FACTURACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTESTIPO_PAGOS_PEDIDOS_CLIENTES" Association="Self.FK_CLIENTESTIPO_PAGOS_PEDIDOS_CLIENTES">
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+            <End Role="CLIENTESTIPO_PAGOS" EntitySet="CLIENTESTIPO_PAGOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTESTIPO_PAGOS_TIPO_PAGOS" Association="Self.FK_CLIENTESTIPO_PAGOS_TIPO_PAGOS">
+            <End Role="TIPO_PAGOS" EntitySet="TIPO_PAGOS" />
+            <End Role="CLIENTESTIPO_PAGOS" EntitySet="CLIENTESTIPO_PAGOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUENTAS_CLIENTES_CLIENTES" Association="Self.FK_CUENTAS_CLIENTES_CLIENTES">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="CUENTAS_CLIENTES" EntitySet="CUENTAS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUENTAS_PROVEEDORES_PROVEEDORES" Association="Self.FK_CUENTAS_PROVEEDORES_PROVEEDORES">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="CUENTAS_PROVEEDORES" EntitySet="CUENTAS_PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVIMIENTOS_CLIENTES_CUENTAS_CLIENTES" Association="Self.FK_MOVIMIENTOS_CLIENTES_CUENTAS_CLIENTES">
+            <End Role="CUENTAS_CLIENTES" EntitySet="CUENTAS_CLIENTES" />
+            <End Role="MOVIMIENTOS_CLIENTES" EntitySet="MOVIMIENTOS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVIMIENTOS_PROVEEDORES_CUENTAS_PROVEEDORES" Association="Self.FK_MOVIMIENTOS_PROVEEDORES_CUENTAS_PROVEEDORES">
+            <End Role="CUENTAS_PROVEEDORES" EntitySet="CUENTAS_PROVEEDORES" />
+            <End Role="MOVIMIENTOS_PROVEEDORES" EntitySet="MOVIMIENTOS_PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_CLIENTES_AspNetUsers" Association="Self.FK_PEDIDOS_CLIENTES_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_CLIENTES_CLIENTES" Association="Self.FK_PEDIDOS_CLIENTES_CLIENTES">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_CLIENTES_DETALLES_PEDIDOS_CLIENTES" Association="Self.FK_PEDIDOS_CLIENTES_DETALLES_PEDIDOS_CLIENTES">
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+            <End Role="PEDIDOS_CLIENTES_DETALLES" EntitySet="PEDIDOS_CLIENTES_DETALLES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_CLIENTES_ESTADOS_PEDIDOS" Association="Self.FK_PEDIDOS_CLIENTES_ESTADOS_PEDIDOS">
+            <End Role="ESTADOS_PEDIDOS" EntitySet="ESTADOS_PEDIDOS" />
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_PROVEEDORES_DETALLES_PEDIDOS_PROVEEDORES" Association="Self.FK_PEDIDOS_PROVEEDORES_DETALLES_PEDIDOS_PROVEEDORES">
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+            <End Role="PEDIDOS_PROVEEDORES_DETALLES" EntitySet="PEDIDOS_PROVEEDORES_DETALLES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_PROVEEDORES_ESTADOS_PEDIDOS" Association="Self.FK_PEDIDOS_PROVEEDORES_ESTADOS_PEDIDOS">
+            <End Role="ESTADOS_PEDIDOS" EntitySet="ESTADOS_PEDIDOS" />
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_PROVEEDORES_PROVEEDORES" Association="Self.FK_PEDIDOS_PROVEEDORES_PROVEEDORES">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTOS_CATEGORIAS" Association="Self.FK_PRODUCTOS_CATEGORIAS">
+            <End Role="CATEGORIAS" EntitySet="CATEGORIAS" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTOS_PROVEEDORES" Association="Self.FK_PRODUCTOS_PROVEEDORES">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTOS_TIPO_IVA" Association="Self.FK_PRODUCTOS_TIPO_IVA">
+            <End Role="TIPO_IVA" EntitySet="TIPO_IVA" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVEEDORES_PROVINCIAS" Association="Self.FK_PROVEEDORES_PROVINCIAS">
+            <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVEEDORESTIPO_FACTURACION_PROVEEDORES" Association="Self.FK_PROVEEDORESTIPO_FACTURACION_PROVEEDORES">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="PROVEEDORESTIPO_FACTURACION" EntitySet="PROVEEDORESTIPO_FACTURACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVEEDORESTIPO_FACTURACION_TIPO_FACTURACIONES" Association="Self.FK_PROVEEDORESTIPO_FACTURACION_TIPO_FACTURACIONES">
+            <End Role="TIPO_FACTURACIONES" EntitySet="TIPO_FACTURACIONES" />
+            <End Role="PROVEEDORESTIPO_FACTURACION" EntitySet="PROVEEDORESTIPO_FACTURACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVEEDORESTIPO_PAGOS_PEDIDOS_PROVEEDORES" Association="Self.FK_PROVEEDORESTIPO_PAGOS_PEDIDOS_PROVEEDORES">
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+            <End Role="PROVEEDORESTIPO_PAGOS" EntitySet="PROVEEDORESTIPO_PAGOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVEEDORESTIPO_PAGOS_TIPO_PAGOS" Association="Self.FK_PROVEEDORESTIPO_PAGOS_TIPO_PAGOS">
+            <End Role="TIPO_PAGOS" EntitySet="TIPO_PAGOS" />
+            <End Role="PROVEEDORESTIPO_PAGOS" EntitySet="PROVEEDORESTIPO_PAGOS" />
+          </AssociationSet>
+          <AssociationSet Name="PEDIDOS_PROVEEDORES_AspNetUsers" Association="Self.PEDIDOS_PROVEEDORES_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CREntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="CRModel.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="CRModel.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="CRModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="CRModel.AspNetUsers" />
+          <EntitySet Name="CATEGORIAS" EntityType="CRModel.CATEGORIAS" />
+          <EntitySet Name="CLIENTES" EntityType="CRModel.CLIENTES" />
+          <EntitySet Name="CUENTAS_CLIENTES" EntityType="CRModel.CUENTAS_CLIENTES" />
+          <EntitySet Name="CUENTAS_PROVEEDORES" EntityType="CRModel.CUENTAS_PROVEEDORES" />
+          <EntitySet Name="ESTADOS_PEDIDOS" EntityType="CRModel.ESTADOS_PEDIDOS" />
+          <EntitySet Name="MOVIMIENTOS_CLIENTES" EntityType="CRModel.MOVIMIENTOS_CLIENTES" />
+          <EntitySet Name="MOVIMIENTOS_PROVEEDORES" EntityType="CRModel.MOVIMIENTOS_PROVEEDORES" />
+          <EntitySet Name="PEDIDOS_CLIENTES" EntityType="CRModel.PEDIDOS_CLIENTES" />
+          <EntitySet Name="PEDIDOS_CLIENTES_DETALLES" EntityType="CRModel.PEDIDOS_CLIENTES_DETALLES" />
+          <EntitySet Name="PEDIDOS_PROVEEDORES" EntityType="CRModel.PEDIDOS_PROVEEDORES" />
+          <EntitySet Name="PEDIDOS_PROVEEDORES_DETALLES" EntityType="CRModel.PEDIDOS_PROVEEDORES_DETALLES" />
+          <EntitySet Name="PRODUCTOS" EntityType="CRModel.PRODUCTOS" />
+          <EntitySet Name="PROVEEDORES" EntityType="CRModel.PROVEEDORES" />
+          <EntitySet Name="PROVINCIAS" EntityType="CRModel.PROVINCIAS" />
+          <EntitySet Name="sysdiagrams" EntityType="CRModel.sysdiagrams" />
+          <EntitySet Name="TIPO_FACTURACIONES" EntityType="CRModel.TIPO_FACTURACIONES" />
+          <EntitySet Name="TIPO_IVA" EntityType="CRModel.TIPO_IVA" />
+          <EntitySet Name="TIPO_PAGOS" EntityType="CRModel.TIPO_PAGOS" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="CRModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="CRModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_CLIENTES_AspNetUsers" Association="CRModel.FK_PEDIDOS_CLIENTES_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="PEDIDOS_PROVEEDORES_AspNetUsers" Association="CRModel.PEDIDOS_PROVEEDORES_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTOS_CATEGORIAS" Association="CRModel.FK_PRODUCTOS_CATEGORIAS">
+            <End Role="CATEGORIAS" EntitySet="CATEGORIAS" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTES_PROVINCIAS" Association="CRModel.FK_CLIENTES_PROVINCIAS">
+            <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUENTAS_CLIENTES_CLIENTES" Association="CRModel.FK_CUENTAS_CLIENTES_CLIENTES">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="CUENTAS_CLIENTES" EntitySet="CUENTAS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_CLIENTES_CLIENTES" Association="CRModel.FK_PEDIDOS_CLIENTES_CLIENTES">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVIMIENTOS_CLIENTES_CUENTAS_CLIENTES" Association="CRModel.FK_MOVIMIENTOS_CLIENTES_CUENTAS_CLIENTES">
+            <End Role="CUENTAS_CLIENTES" EntitySet="CUENTAS_CLIENTES" />
+            <End Role="MOVIMIENTOS_CLIENTES" EntitySet="MOVIMIENTOS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUENTAS_PROVEEDORES_PROVEEDORES" Association="CRModel.FK_CUENTAS_PROVEEDORES_PROVEEDORES">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="CUENTAS_PROVEEDORES" EntitySet="CUENTAS_PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVIMIENTOS_PROVEEDORES_CUENTAS_PROVEEDORES" Association="CRModel.FK_MOVIMIENTOS_PROVEEDORES_CUENTAS_PROVEEDORES">
+            <End Role="CUENTAS_PROVEEDORES" EntitySet="CUENTAS_PROVEEDORES" />
+            <End Role="MOVIMIENTOS_PROVEEDORES" EntitySet="MOVIMIENTOS_PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_CLIENTES_ESTADOS_PEDIDOS" Association="CRModel.FK_PEDIDOS_CLIENTES_ESTADOS_PEDIDOS">
+            <End Role="ESTADOS_PEDIDOS" EntitySet="ESTADOS_PEDIDOS" />
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_PROVEEDORES_ESTADOS_PEDIDOS" Association="CRModel.FK_PEDIDOS_PROVEEDORES_ESTADOS_PEDIDOS">
+            <End Role="ESTADOS_PEDIDOS" EntitySet="ESTADOS_PEDIDOS" />
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEDIDOS_C__TFact__2CF2ADDF" Association="CRModel.FK__PEDIDOS_C__TFact__2CF2ADDF">
+            <End Role="TIPO_FACTURACIONES" EntitySet="TIPO_FACTURACIONES" />
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_CLIENTES_DETALLES_PEDIDOS_CLIENTES" Association="CRModel.FK_PEDIDOS_CLIENTES_DETALLES_PEDIDOS_CLIENTES">
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+            <End Role="PEDIDOS_CLIENTES_DETALLES" EntitySet="PEDIDOS_CLIENTES_DETALLES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEDIDOS_C__Produ__160F4887" Association="CRModel.FK__PEDIDOS_C__Produ__160F4887">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="PEDIDOS_CLIENTES_DETALLES" EntitySet="PEDIDOS_CLIENTES_DETALLES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEDIDOS_P__TFact__32AB8735" Association="CRModel.FK__PEDIDOS_P__TFact__32AB8735">
+            <End Role="TIPO_FACTURACIONES" EntitySet="TIPO_FACTURACIONES" />
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_PROVEEDORES_DETALLES_PEDIDOS_PROVEEDORES" Association="CRModel.FK_PEDIDOS_PROVEEDORES_DETALLES_PEDIDOS_PROVEEDORES">
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+            <End Role="PEDIDOS_PROVEEDORES_DETALLES" EntitySet="PEDIDOS_PROVEEDORES_DETALLES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_PROVEEDORES_PROVEEDORES" Association="CRModel.FK_PEDIDOS_PROVEEDORES_PROVEEDORES">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEDIDOS_P__Produ__17036CC0" Association="CRModel.FK__PEDIDOS_P__Produ__17036CC0">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="PEDIDOS_PROVEEDORES_DETALLES" EntitySet="PEDIDOS_PROVEEDORES_DETALLES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTOS_PROVEEDORES" Association="CRModel.FK_PRODUCTOS_PROVEEDORES">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTOS_TIPO_IVA" Association="CRModel.FK_PRODUCTOS_TIPO_IVA">
+            <End Role="TIPO_IVA" EntitySet="TIPO_IVA" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVEEDORES_PROVINCIAS" Association="CRModel.FK_PROVEEDORES_PROVINCIAS">
+            <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="CRModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="CLIENTESTIPO_FACTURACION" Association="CRModel.CLIENTESTIPO_FACTURACION">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="TIPO_FACTURACIONES" EntitySet="TIPO_FACTURACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="CLIENTESTIPO_PAGOS" Association="CRModel.CLIENTESTIPO_PAGOS">
+            <End Role="PEDIDOS_CLIENTES" EntitySet="PEDIDOS_CLIENTES" />
+            <End Role="TIPO_PAGOS" EntitySet="TIPO_PAGOS" />
+          </AssociationSet>
+          <AssociationSet Name="PROVEEDORESTIPO_FACTURACION" Association="CRModel.PROVEEDORESTIPO_FACTURACION">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="TIPO_FACTURACIONES" EntitySet="TIPO_FACTURACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="PROVEEDORESTIPO_PAGOS" Association="CRModel.PROVEEDORESTIPO_PAGOS">
+            <End Role="PEDIDOS_PROVEEDORES" EntitySet="PEDIDOS_PROVEEDORES" />
+            <End Role="TIPO_PAGOS" EntitySet="TIPO_PAGOS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CRModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CRModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CRModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="CRModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="CRModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="PEDIDOS_CLIENTES" Relationship="CRModel.FK_PEDIDOS_CLIENTES_AspNetUsers" FromRole="AspNetUsers" ToRole="PEDIDOS_CLIENTES" />
+          <NavigationProperty Name="PEDIDOS_PROVEEDORES" Relationship="CRModel.PEDIDOS_PROVEEDORES_AspNetUsers" FromRole="AspNetUsers" ToRole="PEDIDOS_PROVEEDORES" />
+          <NavigationProperty Name="AspNetRoles" Relationship="CRModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="CATEGORIAS">
+          <Key>
+            <PropertyRef Name="CategoriaID" />
+          </Key>
+          <Property Name="CategoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="CRModel.FK_PRODUCTOS_CATEGORIAS" FromRole="CATEGORIAS" ToRole="PRODUCTOS" />
+        </EntityType>
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+          </Key>
+          <Property Name="ClienteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CUIT_CUIL" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProvinciaID" Type="Int32" Nullable="false" />
+          <Property Name="Localidad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodPostal" Type="Int32" Nullable="false" />
+          <Property Name="Latitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Longitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Zoom" Type="Int32" />
+          <Property Name="Telefono1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mail1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mail2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descuento" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Comentarios" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioMercadolibre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PROVINCIAS" Relationship="CRModel.FK_CLIENTES_PROVINCIAS" FromRole="CLIENTES" ToRole="PROVINCIAS" />
+          <NavigationProperty Name="CUENTAS_CLIENTES" Relationship="CRModel.FK_CUENTAS_CLIENTES_CLIENTES" FromRole="CLIENTES" ToRole="CUENTAS_CLIENTES" />
+          <NavigationProperty Name="PEDIDOS_CLIENTES" Relationship="CRModel.FK_PEDIDOS_CLIENTES_CLIENTES" FromRole="CLIENTES" ToRole="PEDIDOS_CLIENTES" />
+          <NavigationProperty Name="TIPO_FACTURACIONES" Relationship="CRModel.CLIENTESTIPO_FACTURACION" FromRole="CLIENTES" ToRole="TIPO_FACTURACIONES" />
+        </EntityType>
+        <EntityType Name="CUENTAS_CLIENTES">
+          <Key>
+            <PropertyRef Name="CCuentaID" />
+          </Key>
+          <Property Name="CCuentaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteID" Type="Int32" Nullable="false" />
+          <Property Name="NumeroCuenta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTES" Relationship="CRModel.FK_CUENTAS_CLIENTES_CLIENTES" FromRole="CUENTAS_CLIENTES" ToRole="CLIENTES" />
+          <NavigationProperty Name="MOVIMIENTOS_CLIENTES" Relationship="CRModel.FK_MOVIMIENTOS_CLIENTES_CUENTAS_CLIENTES" FromRole="CUENTAS_CLIENTES" ToRole="MOVIMIENTOS_CLIENTES" />
+        </EntityType>
+        <EntityType Name="CUENTAS_PROVEEDORES">
+          <Key>
+            <PropertyRef Name="PCuentaID" />
+          </Key>
+          <Property Name="PCuentaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProveedorID" Type="Int32" Nullable="false" />
+          <Property Name="NumeroCuenta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="CRModel.FK_CUENTAS_PROVEEDORES_PROVEEDORES" FromRole="CUENTAS_PROVEEDORES" ToRole="PROVEEDORES" />
+          <NavigationProperty Name="MOVIMIENTOS_PROVEEDORES" Relationship="CRModel.FK_MOVIMIENTOS_PROVEEDORES_CUENTAS_PROVEEDORES" FromRole="CUENTAS_PROVEEDORES" ToRole="MOVIMIENTOS_PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="ESTADOS_PEDIDOS">
+          <Key>
+            <PropertyRef Name="EPedidoID" />
+          </Key>
+          <Property Name="EPedidoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PEDIDOS_CLIENTES" Relationship="CRModel.FK_PEDIDOS_CLIENTES_ESTADOS_PEDIDOS" FromRole="ESTADOS_PEDIDOS" ToRole="PEDIDOS_CLIENTES" />
+          <NavigationProperty Name="PEDIDOS_PROVEEDORES" Relationship="CRModel.FK_PEDIDOS_PROVEEDORES_ESTADOS_PEDIDOS" FromRole="ESTADOS_PEDIDOS" ToRole="PEDIDOS_PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="MOVIMIENTOS_CLIENTES">
+          <Key>
+            <PropertyRef Name="CMovimientoID" />
+          </Key>
+          <Property Name="CMovimientoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CCuentaID" Type="Int32" Nullable="false" />
+          <Property Name="PedidoClienteID" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Debito" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Credito" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Detalle" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CUENTAS_CLIENTES" Relationship="CRModel.FK_MOVIMIENTOS_CLIENTES_CUENTAS_CLIENTES" FromRole="MOVIMIENTOS_CLIENTES" ToRole="CUENTAS_CLIENTES" />
+        </EntityType>
+        <EntityType Name="MOVIMIENTOS_PROVEEDORES">
+          <Key>
+            <PropertyRef Name="PMovimientoID" />
+          </Key>
+          <Property Name="PMovimientoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PCuentaID" Type="Int32" Nullable="false" />
+          <Property Name="PedidoProveedorID" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Debito" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Credito" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="CUENTAS_PROVEEDORES" Relationship="CRModel.FK_MOVIMIENTOS_PROVEEDORES_CUENTAS_PROVEEDORES" FromRole="MOVIMIENTOS_PROVEEDORES" ToRole="CUENTAS_PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="PEDIDOS_CLIENTES">
+          <Key>
+            <PropertyRef Name="PedidoClienteID" />
+          </Key>
+          <Property Name="PedidoClienteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EPedidoID" Type="Int32" Nullable="false" />
+          <Property Name="ClienteID" Type="Int32" Nullable="false" />
+          <Property Name="AsignatarioID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="TFacturacionID" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CRModel.FK_PEDIDOS_CLIENTES_AspNetUsers" FromRole="PEDIDOS_CLIENTES" ToRole="AspNetUsers" />
+          <NavigationProperty Name="CLIENTES" Relationship="CRModel.FK_PEDIDOS_CLIENTES_CLIENTES" FromRole="PEDIDOS_CLIENTES" ToRole="CLIENTES" />
+          <NavigationProperty Name="ESTADOS_PEDIDOS" Relationship="CRModel.FK_PEDIDOS_CLIENTES_ESTADOS_PEDIDOS" FromRole="PEDIDOS_CLIENTES" ToRole="ESTADOS_PEDIDOS" />
+          <NavigationProperty Name="TIPO_FACTURACIONES" Relationship="CRModel.FK__PEDIDOS_C__TFact__2CF2ADDF" FromRole="PEDIDOS_CLIENTES" ToRole="TIPO_FACTURACIONES" />
+          <NavigationProperty Name="PEDIDOS_CLIENTES_DETALLES" Relationship="CRModel.FK_PEDIDOS_CLIENTES_DETALLES_PEDIDOS_CLIENTES" FromRole="PEDIDOS_CLIENTES" ToRole="PEDIDOS_CLIENTES_DETALLES" />
+          <NavigationProperty Name="TIPO_PAGOS" Relationship="CRModel.CLIENTESTIPO_PAGOS" FromRole="PEDIDOS_CLIENTES" ToRole="TIPO_PAGOS" />
+        </EntityType>
+        <EntityType Name="PEDIDOS_CLIENTES_DETALLES">
+          <Key>
+            <PropertyRef Name="PCDetalleID" />
+          </Key>
+          <Property Name="PCDetalleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PedidoClienteID" Type="Int32" Nullable="false" />
+          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ProductoID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PEDIDOS_CLIENTES" Relationship="CRModel.FK_PEDIDOS_CLIENTES_DETALLES_PEDIDOS_CLIENTES" FromRole="PEDIDOS_CLIENTES_DETALLES" ToRole="PEDIDOS_CLIENTES" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="CRModel.FK__PEDIDOS_C__Produ__160F4887" FromRole="PEDIDOS_CLIENTES_DETALLES" ToRole="PRODUCTOS" />
+        </EntityType>
+        <EntityType Name="PEDIDOS_PROVEEDORES">
+          <Key>
+            <PropertyRef Name="PedidoProveedorID" />
+          </Key>
+          <Property Name="PedidoProveedorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EPedidoID" Type="Int32" Nullable="false" />
+          <Property Name="ProveedorID" Type="Int32" Nullable="false" />
+          <Property Name="AsignatarioID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="TFacturacionID" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CRModel.PEDIDOS_PROVEEDORES_AspNetUsers" FromRole="PEDIDOS_PROVEEDORES" ToRole="AspNetUsers" />
+          <NavigationProperty Name="ESTADOS_PEDIDOS" Relationship="CRModel.FK_PEDIDOS_PROVEEDORES_ESTADOS_PEDIDOS" FromRole="PEDIDOS_PROVEEDORES" ToRole="ESTADOS_PEDIDOS" />
+          <NavigationProperty Name="TIPO_FACTURACIONES" Relationship="CRModel.FK__PEDIDOS_P__TFact__32AB8735" FromRole="PEDIDOS_PROVEEDORES" ToRole="TIPO_FACTURACIONES" />
+          <NavigationProperty Name="PEDIDOS_PROVEEDORES_DETALLES" Relationship="CRModel.FK_PEDIDOS_PROVEEDORES_DETALLES_PEDIDOS_PROVEEDORES" FromRole="PEDIDOS_PROVEEDORES" ToRole="PEDIDOS_PROVEEDORES_DETALLES" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="CRModel.FK_PEDIDOS_PROVEEDORES_PROVEEDORES" FromRole="PEDIDOS_PROVEEDORES" ToRole="PROVEEDORES" />
+          <NavigationProperty Name="TIPO_PAGOS" Relationship="CRModel.PROVEEDORESTIPO_PAGOS" FromRole="PEDIDOS_PROVEEDORES" ToRole="TIPO_PAGOS" />
+        </EntityType>
+        <EntityType Name="PEDIDOS_PROVEEDORES_DETALLES">
+          <Key>
+            <PropertyRef Name="PPDetalleID" />
+          </Key>
+          <Property Name="PPDetalleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PedidoProveedorID" Type="Int32" Nullable="false" />
+          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ProductoID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PEDIDOS_PROVEEDORES" Relationship="CRModel.FK_PEDIDOS_PROVEEDORES_DETALLES_PEDIDOS_PROVEEDORES" FromRole="PEDIDOS_PROVEEDORES_DETALLES" ToRole="PEDIDOS_PROVEEDORES" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="CRModel.FK__PEDIDOS_P__Produ__17036CC0" FromRole="PEDIDOS_PROVEEDORES_DETALLES" ToRole="PRODUCTOS" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS">
+          <Key>
+            <PropertyRef Name="ProductoID" />
+          </Key>
+          <Property Name="ProductoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodProducto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="StockReposicion" Type="Int32" Nullable="false" />
+          <Property Name="PrecioCompra" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="PrecioVenta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="CategoriaID" Type="Int32" Nullable="false" />
+          <Property Name="ImagenProducto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProveedorID" Type="Int32" Nullable="false" />
+          <Property Name="Detalle" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="TIvaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CATEGORIAS" Relationship="CRModel.FK_PRODUCTOS_CATEGORIAS" FromRole="PRODUCTOS" ToRole="CATEGORIAS" />
+          <NavigationProperty Name="PEDIDOS_CLIENTES_DETALLES" Relationship="CRModel.FK__PEDIDOS_C__Produ__160F4887" FromRole="PRODUCTOS" ToRole="PEDIDOS_CLIENTES_DETALLES" />
+          <NavigationProperty Name="PEDIDOS_PROVEEDORES_DETALLES" Relationship="CRModel.FK__PEDIDOS_P__Produ__17036CC0" FromRole="PRODUCTOS" ToRole="PEDIDOS_PROVEEDORES_DETALLES" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="CRModel.FK_PRODUCTOS_PROVEEDORES" FromRole="PRODUCTOS" ToRole="PROVEEDORES" />
+          <NavigationProperty Name="TIPO_IVA" Relationship="CRModel.FK_PRODUCTOS_TIPO_IVA" FromRole="PRODUCTOS" ToRole="TIPO_IVA" />
+        </EntityType>
+        <EntityType Name="PROVEEDORES">
+          <Key>
+            <PropertyRef Name="ProveedorID" />
+          </Key>
+          <Property Name="ProveedorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ListaPrecios" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CUIT_CUIL" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProvinciaID" Type="Int32" Nullable="false" />
+          <Property Name="Localidad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodPostal" Type="Int32" Nullable="false" />
+          <Property Name="Latitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Longitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Zoom" Type="Int32" />
+          <Property Name="Telefono1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mail1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mail2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descuento" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Comentarios" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Rubro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroCuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Banco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CBU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CA" Type="Boolean" />
+          <Property Name="CC" Type="Boolean" />
+          <Property Name="UsuarioMercadolibre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CUENTAS_PROVEEDORES" Relationship="CRModel.FK_CUENTAS_PROVEEDORES_PROVEEDORES" FromRole="PROVEEDORES" ToRole="CUENTAS_PROVEEDORES" />
+          <NavigationProperty Name="PEDIDOS_PROVEEDORES" Relationship="CRModel.FK_PEDIDOS_PROVEEDORES_PROVEEDORES" FromRole="PROVEEDORES" ToRole="PEDIDOS_PROVEEDORES" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="CRModel.FK_PRODUCTOS_PROVEEDORES" FromRole="PROVEEDORES" ToRole="PRODUCTOS" />
+          <NavigationProperty Name="PROVINCIAS" Relationship="CRModel.FK_PROVEEDORES_PROVINCIAS" FromRole="PROVEEDORES" ToRole="PROVINCIAS" />
+          <NavigationProperty Name="TIPO_FACTURACIONES" Relationship="CRModel.PROVEEDORESTIPO_FACTURACION" FromRole="PROVEEDORES" ToRole="TIPO_FACTURACIONES" />
+        </EntityType>
+        <EntityType Name="PROVINCIAS">
+          <Key>
+            <PropertyRef Name="ProvinciaID" />
+          </Key>
+          <Property Name="ProvinciaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTES" Relationship="CRModel.FK_CLIENTES_PROVINCIAS" FromRole="PROVINCIAS" ToRole="CLIENTES" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="CRModel.FK_PROVEEDORES_PROVINCIAS" FromRole="PROVINCIAS" ToRole="PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TIPO_FACTURACIONES">
+          <Key>
+            <PropertyRef Name="TFacturacionID" />
+          </Key>
+          <Property Name="TFacturacionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PEDIDOS_CLIENTES" Relationship="CRModel.FK__PEDIDOS_C__TFact__2CF2ADDF" FromRole="TIPO_FACTURACIONES" ToRole="PEDIDOS_CLIENTES" />
+          <NavigationProperty Name="PEDIDOS_PROVEEDORES" Relationship="CRModel.FK__PEDIDOS_P__TFact__32AB8735" FromRole="TIPO_FACTURACIONES" ToRole="PEDIDOS_PROVEEDORES" />
+          <NavigationProperty Name="CLIENTES" Relationship="CRModel.CLIENTESTIPO_FACTURACION" FromRole="TIPO_FACTURACIONES" ToRole="CLIENTES" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="CRModel.PROVEEDORESTIPO_FACTURACION" FromRole="TIPO_FACTURACIONES" ToRole="PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="TIPO_IVA">
+          <Key>
+            <PropertyRef Name="TIvaID" />
+          </Key>
+          <Property Name="TIvaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Porcentaje" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="CRModel.FK_PRODUCTOS_TIPO_IVA" FromRole="TIPO_IVA" ToRole="PRODUCTOS" />
+        </EntityType>
+        <EntityType Name="TIPO_PAGOS">
+          <Key>
+            <PropertyRef Name="TPagoID" />
+          </Key>
+          <Property Name="TPagoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PEDIDOS_CLIENTES" Relationship="CRModel.CLIENTESTIPO_PAGOS" FromRole="TIPO_PAGOS" ToRole="PEDIDOS_CLIENTES" />
+          <NavigationProperty Name="PEDIDOS_PROVEEDORES" Relationship="CRModel.PROVEEDORESTIPO_PAGOS" FromRole="TIPO_PAGOS" ToRole="PEDIDOS_PROVEEDORES" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="CRModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CRModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="CRModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CRModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_CLIENTES_AspNetUsers">
+          <End Type="CRModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="CRModel.PEDIDOS_CLIENTES" Role="PEDIDOS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES">
+              <PropertyRef Name="AsignatarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PEDIDOS_PROVEEDORES_AspNetUsers">
+          <End Type="CRModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="CRModel.PEDIDOS_PROVEEDORES" Role="PEDIDOS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES">
+              <PropertyRef Name="AsignatarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTOS_CATEGORIAS">
+          <End Type="CRModel.CATEGORIAS" Role="CATEGORIAS" Multiplicity="1" />
+          <End Type="CRModel.PRODUCTOS" Role="PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIAS">
+              <PropertyRef Name="CategoriaID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="CategoriaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTES_PROVINCIAS">
+          <End Type="CRModel.PROVINCIAS" Role="PROVINCIAS" Multiplicity="1" />
+          <End Type="CRModel.CLIENTES" Role="CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCIAS">
+              <PropertyRef Name="ProvinciaID" />
+            </Principal>
+            <Dependent Role="CLIENTES">
+              <PropertyRef Name="ProvinciaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUENTAS_CLIENTES_CLIENTES">
+          <End Type="CRModel.CLIENTES" Role="CLIENTES" Multiplicity="1" />
+          <End Type="CRModel.CUENTAS_CLIENTES" Role="CUENTAS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="CUENTAS_CLIENTES">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_CLIENTES_CLIENTES">
+          <End Type="CRModel.CLIENTES" Role="CLIENTES" Multiplicity="1" />
+          <End Type="CRModel.PEDIDOS_CLIENTES" Role="PEDIDOS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVIMIENTOS_CLIENTES_CUENTAS_CLIENTES">
+          <End Type="CRModel.CUENTAS_CLIENTES" Role="CUENTAS_CLIENTES" Multiplicity="1" />
+          <End Type="CRModel.MOVIMIENTOS_CLIENTES" Role="MOVIMIENTOS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTAS_CLIENTES">
+              <PropertyRef Name="CCuentaID" />
+            </Principal>
+            <Dependent Role="MOVIMIENTOS_CLIENTES">
+              <PropertyRef Name="CCuentaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUENTAS_PROVEEDORES_PROVEEDORES">
+          <End Type="CRModel.PROVEEDORES" Role="PROVEEDORES" Multiplicity="1" />
+          <End Type="CRModel.CUENTAS_PROVEEDORES" Role="CUENTAS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="ProveedorID" />
+            </Principal>
+            <Dependent Role="CUENTAS_PROVEEDORES">
+              <PropertyRef Name="ProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVIMIENTOS_PROVEEDORES_CUENTAS_PROVEEDORES">
+          <End Type="CRModel.CUENTAS_PROVEEDORES" Role="CUENTAS_PROVEEDORES" Multiplicity="1" />
+          <End Type="CRModel.MOVIMIENTOS_PROVEEDORES" Role="MOVIMIENTOS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTAS_PROVEEDORES">
+              <PropertyRef Name="PCuentaID" />
+            </Principal>
+            <Dependent Role="MOVIMIENTOS_PROVEEDORES">
+              <PropertyRef Name="PCuentaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_CLIENTES_ESTADOS_PEDIDOS">
+          <End Type="CRModel.ESTADOS_PEDIDOS" Role="ESTADOS_PEDIDOS" Multiplicity="1" />
+          <End Type="CRModel.PEDIDOS_CLIENTES" Role="PEDIDOS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADOS_PEDIDOS">
+              <PropertyRef Name="EPedidoID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES">
+              <PropertyRef Name="EPedidoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_PROVEEDORES_ESTADOS_PEDIDOS">
+          <End Type="CRModel.ESTADOS_PEDIDOS" Role="ESTADOS_PEDIDOS" Multiplicity="1" />
+          <End Type="CRModel.PEDIDOS_PROVEEDORES" Role="PEDIDOS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADOS_PEDIDOS">
+              <PropertyRef Name="EPedidoID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES">
+              <PropertyRef Name="EPedidoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PEDIDOS_C__TFact__2CF2ADDF">
+          <End Type="CRModel.TIPO_FACTURACIONES" Role="TIPO_FACTURACIONES" Multiplicity="0..1" />
+          <End Type="CRModel.PEDIDOS_CLIENTES" Role="PEDIDOS_CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_FACTURACIONES">
+              <PropertyRef Name="TFacturacionID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES">
+              <PropertyRef Name="TFacturacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_CLIENTES_DETALLES_PEDIDOS_CLIENTES">
+          <End Type="CRModel.PEDIDOS_CLIENTES" Role="PEDIDOS_CLIENTES" Multiplicity="1" />
+          <End Type="CRModel.PEDIDOS_CLIENTES_DETALLES" Role="PEDIDOS_CLIENTES_DETALLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDOS_CLIENTES">
+              <PropertyRef Name="PedidoClienteID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES_DETALLES">
+              <PropertyRef Name="PedidoClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PEDIDOS_C__Produ__160F4887">
+          <End Type="CRModel.PRODUCTOS" Role="PRODUCTOS" Multiplicity="1" />
+          <End Type="CRModel.PEDIDOS_CLIENTES_DETALLES" Role="PEDIDOS_CLIENTES_DETALLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ProductoID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_CLIENTES_DETALLES">
+              <PropertyRef Name="ProductoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PEDIDOS_P__TFact__32AB8735">
+          <End Type="CRModel.TIPO_FACTURACIONES" Role="TIPO_FACTURACIONES" Multiplicity="0..1" />
+          <End Type="CRModel.PEDIDOS_PROVEEDORES" Role="PEDIDOS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_FACTURACIONES">
+              <PropertyRef Name="TFacturacionID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES">
+              <PropertyRef Name="TFacturacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_PROVEEDORES_DETALLES_PEDIDOS_PROVEEDORES">
+          <End Type="CRModel.PEDIDOS_PROVEEDORES" Role="PEDIDOS_PROVEEDORES" Multiplicity="1" />
+          <End Type="CRModel.PEDIDOS_PROVEEDORES_DETALLES" Role="PEDIDOS_PROVEEDORES_DETALLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDOS_PROVEEDORES">
+              <PropertyRef Name="PedidoProveedorID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES_DETALLES">
+              <PropertyRef Name="PedidoProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_PROVEEDORES_PROVEEDORES">
+          <End Type="CRModel.PROVEEDORES" Role="PROVEEDORES" Multiplicity="1" />
+          <End Type="CRModel.PEDIDOS_PROVEEDORES" Role="PEDIDOS_PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="ProveedorID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES">
+              <PropertyRef Name="ProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PEDIDOS_P__Produ__17036CC0">
+          <End Type="CRModel.PRODUCTOS" Role="PRODUCTOS" Multiplicity="1" />
+          <End Type="CRModel.PEDIDOS_PROVEEDORES_DETALLES" Role="PEDIDOS_PROVEEDORES_DETALLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ProductoID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_PROVEEDORES_DETALLES">
+              <PropertyRef Name="ProductoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTOS_PROVEEDORES">
+          <End Type="CRModel.PROVEEDORES" Role="PROVEEDORES" Multiplicity="1" />
+          <End Type="CRModel.PRODUCTOS" Role="PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="ProveedorID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="ProveedorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTOS_TIPO_IVA">
+          <End Type="CRModel.TIPO_IVA" Role="TIPO_IVA" Multiplicity="1" />
+          <End Type="CRModel.PRODUCTOS" Role="PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_IVA">
+              <PropertyRef Name="TIvaID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="TIvaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVEEDORES_PROVINCIAS">
+          <End Type="CRModel.PROVINCIAS" Role="PROVINCIAS" Multiplicity="1" />
+          <End Type="CRModel.PROVEEDORES" Role="PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCIAS">
+              <PropertyRef Name="ProvinciaID" />
+            </Principal>
+            <Dependent Role="PROVEEDORES">
+              <PropertyRef Name="ProvinciaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="CRModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="CRModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+        <Association Name="CLIENTESTIPO_FACTURACION">
+          <End Type="CRModel.CLIENTES" Role="CLIENTES" Multiplicity="*" />
+          <End Type="CRModel.TIPO_FACTURACIONES" Role="TIPO_FACTURACIONES" Multiplicity="*" />
+        </Association>
+        <Association Name="CLIENTESTIPO_PAGOS">
+          <End Type="CRModel.PEDIDOS_CLIENTES" Role="PEDIDOS_CLIENTES" Multiplicity="*" />
+          <End Type="CRModel.TIPO_PAGOS" Role="TIPO_PAGOS" Multiplicity="*" />
+        </Association>
+        <Association Name="PROVEEDORESTIPO_FACTURACION">
+          <End Type="CRModel.PROVEEDORES" Role="PROVEEDORES" Multiplicity="*" />
+          <End Type="CRModel.TIPO_FACTURACIONES" Role="TIPO_FACTURACIONES" Multiplicity="*" />
+        </Association>
+        <Association Name="PROVEEDORESTIPO_PAGOS">
+          <End Type="CRModel.PEDIDOS_PROVEEDORES" Role="PEDIDOS_PROVEEDORES" Multiplicity="*" />
+          <End Type="CRModel.TIPO_PAGOS" Role="TIPO_PAGOS" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CRModelStoreContainer" CdmEntityContainer="CREntities1">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="CRModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="CRModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="CRModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="CRModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIAS">
+            <EntityTypeMapping TypeName="CRModel.CATEGORIAS">
+              <MappingFragment StoreEntitySet="CATEGORIAS">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CategoriaID" ColumnName="CategoriaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTES">
+            <EntityTypeMapping TypeName="CRModel.CLIENTES">
+              <MappingFragment StoreEntitySet="CLIENTES">
+                <ScalarProperty Name="UsuarioMercadolibre" ColumnName="UsuarioMercadolibre" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Mail2" ColumnName="Mail2" />
+                <ScalarProperty Name="Mail1" ColumnName="Mail1" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Telefono1" ColumnName="Telefono1" />
+                <ScalarProperty Name="Zoom" ColumnName="Zoom" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="ProvinciaID" ColumnName="ProvinciaID" />
+                <ScalarProperty Name="Direccion2" ColumnName="Direccion2" />
+                <ScalarProperty Name="Direccion1" ColumnName="Direccion1" />
+                <ScalarProperty Name="CUIT_CUIL" ColumnName="CUIT_CUIL" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUENTAS_CLIENTES">
+            <EntityTypeMapping TypeName="CRModel.CUENTAS_CLIENTES">
+              <MappingFragment StoreEntitySet="CUENTAS_CLIENTES">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="NumeroCuenta" ColumnName="NumeroCuenta" />
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+                <ScalarProperty Name="CCuentaID" ColumnName="CCuentaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUENTAS_PROVEEDORES">
+            <EntityTypeMapping TypeName="CRModel.CUENTAS_PROVEEDORES">
+              <MappingFragment StoreEntitySet="CUENTAS_PROVEEDORES">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="NumeroCuenta" ColumnName="NumeroCuenta" />
+                <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
+                <ScalarProperty Name="PCuentaID" ColumnName="PCuentaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTADOS_PEDIDOS">
+            <EntityTypeMapping TypeName="CRModel.ESTADOS_PEDIDOS">
+              <MappingFragment StoreEntitySet="ESTADOS_PEDIDOS">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="EPedidoID" ColumnName="EPedidoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVIMIENTOS_CLIENTES">
+            <EntityTypeMapping TypeName="CRModel.MOVIMIENTOS_CLIENTES">
+              <MappingFragment StoreEntitySet="MOVIMIENTOS_CLIENTES">
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="Credito" ColumnName="Credito" />
+                <ScalarProperty Name="Debito" ColumnName="Debito" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="PedidoClienteID" ColumnName="PedidoClienteID" />
+                <ScalarProperty Name="CCuentaID" ColumnName="CCuentaID" />
+                <ScalarProperty Name="CMovimientoID" ColumnName="CMovimientoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVIMIENTOS_PROVEEDORES">
+            <EntityTypeMapping TypeName="CRModel.MOVIMIENTOS_PROVEEDORES">
+              <MappingFragment StoreEntitySet="MOVIMIENTOS_PROVEEDORES">
+                <ScalarProperty Name="Credito" ColumnName="Credito" />
+                <ScalarProperty Name="Debito" ColumnName="Debito" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="PedidoProveedorID" ColumnName="PedidoProveedorID" />
+                <ScalarProperty Name="PCuentaID" ColumnName="PCuentaID" />
+                <ScalarProperty Name="PMovimientoID" ColumnName="PMovimientoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PEDIDOS_CLIENTES">
+            <EntityTypeMapping TypeName="CRModel.PEDIDOS_CLIENTES">
+              <MappingFragment StoreEntitySet="PEDIDOS_CLIENTES">
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="TFacturacionID" ColumnName="TFacturacionID" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="AsignatarioID" ColumnName="AsignatarioID" />
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+                <ScalarProperty Name="EPedidoID" ColumnName="EPedidoID" />
+                <ScalarProperty Name="PedidoClienteID" ColumnName="PedidoClienteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PEDIDOS_CLIENTES_DETALLES">
+            <EntityTypeMapping TypeName="CRModel.PEDIDOS_CLIENTES_DETALLES">
+              <MappingFragment StoreEntitySet="PEDIDOS_CLIENTES_DETALLES">
+                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="PedidoClienteID" ColumnName="PedidoClienteID" />
+                <ScalarProperty Name="PCDetalleID" ColumnName="PCDetalleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PEDIDOS_PROVEEDORES">
+            <EntityTypeMapping TypeName="CRModel.PEDIDOS_PROVEEDORES">
+              <MappingFragment StoreEntitySet="PEDIDOS_PROVEEDORES">
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="TFacturacionID" ColumnName="TFacturacionID" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="AsignatarioID" ColumnName="AsignatarioID" />
+                <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
+                <ScalarProperty Name="EPedidoID" ColumnName="EPedidoID" />
+                <ScalarProperty Name="PedidoProveedorID" ColumnName="PedidoProveedorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PEDIDOS_PROVEEDORES_DETALLES">
+            <EntityTypeMapping TypeName="CRModel.PEDIDOS_PROVEEDORES_DETALLES">
+              <MappingFragment StoreEntitySet="PEDIDOS_PROVEEDORES_DETALLES">
+                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="PedidoProveedorID" ColumnName="PedidoProveedorID" />
+                <ScalarProperty Name="PPDetalleID" ColumnName="PPDetalleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOS">
+            <EntityTypeMapping TypeName="CRModel.PRODUCTOS">
+              <MappingFragment StoreEntitySet="PRODUCTOS">
+                <ScalarProperty Name="TIvaID" ColumnName="TIvaID" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
+                <ScalarProperty Name="ImagenProducto" ColumnName="ImagenProducto" />
+                <ScalarProperty Name="CategoriaID" ColumnName="CategoriaID" />
+                <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+                <ScalarProperty Name="PrecioCompra" ColumnName="PrecioCompra" />
+                <ScalarProperty Name="StockReposicion" ColumnName="StockReposicion" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CodProducto" ColumnName="CodProducto" />
+                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDORES">
+            <EntityTypeMapping TypeName="CRModel.PROVEEDORES">
+              <MappingFragment StoreEntitySet="PROVEEDORES">
+                <ScalarProperty Name="UsuarioMercadolibre" ColumnName="UsuarioMercadolibre" />
+                <ScalarProperty Name="CC" ColumnName="CC" />
+                <ScalarProperty Name="CA" ColumnName="CA" />
+                <ScalarProperty Name="CBU" ColumnName="CBU" />
+                <ScalarProperty Name="Banco" ColumnName="Banco" />
+                <ScalarProperty Name="NumeroCuenta" ColumnName="NumeroCuenta" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Mail2" ColumnName="Mail2" />
+                <ScalarProperty Name="Mail1" ColumnName="Mail1" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Telefono1" ColumnName="Telefono1" />
+                <ScalarProperty Name="Zoom" ColumnName="Zoom" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="ProvinciaID" ColumnName="ProvinciaID" />
+                <ScalarProperty Name="Direccion2" ColumnName="Direccion2" />
+                <ScalarProperty Name="Direccion1" ColumnName="Direccion1" />
+                <ScalarProperty Name="CUIT_CUIL" ColumnName="CUIT_CUIL" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ListaPrecios" ColumnName="ListaPrecios" />
+                <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVINCIAS">
+            <EntityTypeMapping TypeName="CRModel.PROVINCIAS">
+              <MappingFragment StoreEntitySet="PROVINCIAS">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ProvinciaID" ColumnName="ProvinciaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CRModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_FACTURACIONES">
+            <EntityTypeMapping TypeName="CRModel.TIPO_FACTURACIONES">
+              <MappingFragment StoreEntitySet="TIPO_FACTURACIONES">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TFacturacionID" ColumnName="TFacturacionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_IVA">
+            <EntityTypeMapping TypeName="CRModel.TIPO_IVA">
+              <MappingFragment StoreEntitySet="TIPO_IVA">
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+                <ScalarProperty Name="TIvaID" ColumnName="TIvaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_PAGOS">
+            <EntityTypeMapping TypeName="CRModel.TIPO_PAGOS">
+              <MappingFragment StoreEntitySet="TIPO_PAGOS">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TPagoID" ColumnName="TPagoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CRModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CLIENTESTIPO_FACTURACION" TypeName="CRModel.CLIENTESTIPO_FACTURACION" StoreEntitySet="CLIENTESTIPO_FACTURACION">
+            <EndProperty Name="TIPO_FACTURACIONES">
+              <ScalarProperty Name="TFacturacionID" ColumnName="TIPO_FACTURACIONES_TFacturacionID" />
+            </EndProperty>
+            <EndProperty Name="CLIENTES">
+              <ScalarProperty Name="ClienteID" ColumnName="CLIENTES_ClienteID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CLIENTESTIPO_PAGOS" TypeName="CRModel.CLIENTESTIPO_PAGOS" StoreEntitySet="CLIENTESTIPO_PAGOS">
+            <EndProperty Name="TIPO_PAGOS">
+              <ScalarProperty Name="TPagoID" ColumnName="TIPO_PAGOS_TPagoID" />
+            </EndProperty>
+            <EndProperty Name="PEDIDOS_CLIENTES">
+              <ScalarProperty Name="PedidoClienteID" ColumnName="PEDIDOS_CLIENTES_PedidoClienteID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PROVEEDORESTIPO_FACTURACION" TypeName="CRModel.PROVEEDORESTIPO_FACTURACION" StoreEntitySet="PROVEEDORESTIPO_FACTURACION">
+            <EndProperty Name="TIPO_FACTURACIONES">
+              <ScalarProperty Name="TFacturacionID" ColumnName="TIPO_FACTURACIONES_TFacturacionID" />
+            </EndProperty>
+            <EndProperty Name="PROVEEDORES">
+              <ScalarProperty Name="ProveedorID" ColumnName="PROVEEDORES_ProveedorID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PROVEEDORESTIPO_PAGOS" TypeName="CRModel.PROVEEDORESTIPO_PAGOS" StoreEntitySet="PROVEEDORESTIPO_PAGOS">
+            <EndProperty Name="TIPO_PAGOS">
+              <ScalarProperty Name="TPagoID" ColumnName="TIPO_PAGOS_TPagoID" />
+            </EndProperty>
+            <EndProperty Name="PEDIDOS_PROVEEDORES">
+              <ScalarProperty Name="PedidoProveedorID" ColumnName="PEDIDOS_PROVEEDORES_PedidoProveedorID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

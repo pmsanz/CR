@@ -1,0 +1,66 @@
+﻿@model IList<WebApplication3.Models.PedidoClienteDashViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().PedidoID)
+        </th>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AspNetUsers.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().FechaCreacion)
+        </th>
+
+        <th>
+            Detalle
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PedidoID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CLIENTES.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ESTADOS_PEDIDOS.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUsers.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion, "ddMMyyyy")
+            </td>
+            <td>
+                @Html.ActionLink("ver detalle", @Url.Action("/PedidoCliente/Edit"), new { id = item.PedidoID })
+            </td>
+        </tr>
+    }
+
+</table>
+
